@@ -1,0 +1,35 @@
+{
+  "name": "bancoitenssenai",
+  "version": "1.0.0",
+  "description": "Back-end for Banco de Itens Senai",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thamaluka/BancoItensSENAI.git"
+  },
+  "keywords": [
+    "Banco",
+    "de",
+    "Itens",
+    "Senai"
+  ],
+  "author": "Thamires Garcia",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thamaluka/BancoItensSENAI/issues"
+  },
+  "homepage": "https://github.com/Thamaluka/BancoItensSENAI#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "consign": "^0.1.6",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.5.0",
+    "mysql": "^2.16.0",
+    "mysql2": "^1.6.5",
+    "sequelize": "^4.43.0"
+  }
+}
