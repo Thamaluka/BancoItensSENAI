@@ -1,0 +1,31 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+@font-face {
+    font-family: roboto;
+    src: url(./fonts/Roboto-Regular.ttf) format("opentype");
+  }
+
+.btn-secondary, 
+.btn-secondary:active, 
+.btn-secondary:visited {
+    background-color: #ffffff !important;
+    border-color: #299885 !important;
+    border-width: 2px   !important;
+    color:  #299885 !important;
+}
+.btn-secondary:hover,
+.btn-secondary:checked {
+    background-color: #299885 !important;
+    color:  #ffffff !important;
+}
+
+.btn-primary, 
+.btn-primary:active, 
+.btn-primary:hover
+.btn-primary:visited {
+    background-color: #299885 !important;
+    border-color: #299885 !important;
+    color:  #ffffff !important;
+    border-width: 2px   !important;
+}
