@@ -10,7 +10,12 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
+<<<<<<< HEAD:front-end/angular.json
           "style": "scss"
+=======
+          "style": "sass"
+         
+>>>>>>> c40371e93376220491d1ecb4ade7a85ce9ad37e8:frontEnd/banco-itens/angular.json
         }
       },
       "architect": {
@@ -27,9 +32,14 @@
               "src/assets"
             ],
             "styles": [
+<<<<<<< HEAD:front-end/angular.json
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
+=======
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+>>>>>>> c40371e93376220491d1ecb4ade7a85ce9ad37e8:frontEnd/banco-itens/angular.json
             ],
             "scripts": [],
             "es5BrowserSupport": true
