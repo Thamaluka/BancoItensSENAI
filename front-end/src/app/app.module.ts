@@ -7,6 +7,10 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HeaderComponent } from './views/header/header.component';
 import { FooterComponent } from './views/footer/footer.component';
+import { LoginComponent } from './components/login/login.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { HomeComponent } from './views/home/home.component';
+
 
 
 @NgModule({
@@ -14,13 +18,17 @@ import { FooterComponent } from './views/footer/footer.component';
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    LoginComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
+    NgbModule,
     TooltipModule.forRoot()
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

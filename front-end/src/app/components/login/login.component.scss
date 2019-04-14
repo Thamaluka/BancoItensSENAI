@@ -1,0 +1,35 @@
+.tab-active {
+  font-family: roboto;
+  font-weight: bold;
+  color: black;
+  border-bottom: 3px solid #299885;
+  width: 150px;
+  text-align: center;
+}
+
+.tab-inative {
+  color: black;
+  width: 150px;
+  text-align: center;
+}
+
+.login-form {
+  margin-top: 20px;
+}
+
+.pass-forgot {
+  text-align: end;
+  color: #299885;
+  font-style: italic;
+}
+
+label {
+  font-size: 15px;
+}
+
+.submit-button {
+  font-family: roboto;
+  font-size: 15px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
