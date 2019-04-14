@@ -1,13 +1,29 @@
-
-.title{
-    text-align: center;
-    font-size: 25px;
-    color: #299885;
-    font-family: roboto;
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-top:10px;
+.title {
+  text-align: center;
+  font-size: 25px;
+  color: #299885;
+  font-family: roboto;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 10px;
 }
-.logo{
-    align-self: center
+.logo {
+  align-self: center;
+}
+
+.router-header {
+  background-color: #299885;
+}
+
+.router-txt {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white;
+  font-style: italic;
+}
+
+.user {
+    text-align: end;
+    flex-direction: row;
+    align-items: flex-end;
 }

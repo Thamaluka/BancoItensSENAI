@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  isLogin: boolean = false
+  routerName :string = 'Home';
+    constructor() { }
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+ngOnInit() {
+}
 
 }

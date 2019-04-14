@@ -10,6 +10,7 @@ import { FooterComponent } from './views/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './views/home/home.component';
+import { MenuHeaderComponent } from './views/menu-header/menu-header.component';
 
 
 
@@ -20,6 +21,7 @@ import { HomeComponent } from './views/home/home.component';
     FooterComponent,
     LoginComponent,
     HomeComponent,
+    MenuHeaderComponent,
   ],
   imports: [
     BrowserModule,
