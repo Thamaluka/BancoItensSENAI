@@ -1,15 +1,16 @@
 .footer {
   background-color: #299885;
+
+  bottom: 0;
+  width: 100%;
 }
+
+
 .footer-note {
   text-align: left;
   color: white;
   font-size: 15px;
   font-family: roboto;
-}
-.footer-inner {
-  padding-top: 30px;
-  padding-bottom: 30px;
 }
 
 .footer-logo-img {
