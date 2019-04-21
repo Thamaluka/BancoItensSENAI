@@ -23,14 +23,17 @@
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   </div>
   <div *ngIf="!isLogin">
     <div class="container">
       <div class="router-txt">
-        {{routerName}}
+        <a  routerLink="/home">
+          {{routerName}}
+        </a>
+
       </div>
     </div>
 

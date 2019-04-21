@@ -1,0 +1,64 @@
+<!-- Button trigger modal -->
+<input class="form-check-input " type="radio" value="" (click)="open(content)">
+<a (click)="open(content)">Aceitar os termos de uso desse sistema</a>
+
+<!-- Modal -->
+<ng-template #content let-modal lg>
+  <div class="modal-header ">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body lg">
+    <form>
+        <h6 class="modal-title" id="modal-basic-title"> TERMO DE TRANSFERÊNCIA E CESSÃO DE DIREITOS AUTORAIS</h6><br/> 
+      <div class="form-group">
+       
+        <div class="input-group" id="body-modal">
+          <div>
+            Pelo presente instrumento, de um lado, o Autor do(s) item(ns),{{name}}, docente, inscrito no CPF
+            sob n.º ______________________, colaborador do SENAI/SC e registro de
+            matrícula ______________, doravante denominado de CEDENTE e, de outro lado, o Serviço Nacional de
+            Aprendizagem
+            Industrial de Santa Catarina, pessoa jurídica de direito privado, inscrito no CNPJ/MF sob o n.º
+            03.774.688/0001-55, com sede na Rod Admar Gonzaga, n.º 2765, Florianópolis – SC, doravante denominado
+            CESSIONÁRIO, têm justo e acordado o presente Contrato de Cessão de Uso dos Direitos Autorais, em caráter
+            universal, total e definitivo, que se faz por prazo indeterminado e gratuito, mediante as seguintes
+            condições:
+            O CEDENTE e autor do(s) item(ns) de avaliação cede ao CESSIONÁRIO o direito de uso do(s) item(ins)
+            elaborados
+            para a plataforma “Banco de Itens SENAI/SC, declarando sob as penas da lei, a sua inteira e exclusiva
+            responsabilidade quanto a integridade do conteúdo desenvolvido.
+            O CEDENTE declara, sob as penas da lei e sob sua inteira e exclusiva responsabilidade, que é o autor e
+            proprietário dos itens enviados, responsabilizando-se por qualquer dano que venha a causar ao CESSIONÁRIO.
+            O CEDENTE declara não existir nenhuma proibição vinculada à divulgação interna dos itens elaborados,
+            desonerando, também, o SENAI/SC de todas e quaisquer responsabilidades oriundas da utilização do material
+            por
+            si ou outros docentes vinculados a instituição.
+            O CEDENTE, na condição de autor, declara que em caso de aceitação do(s) item(ns) enviado(s) para publicação
+            na
+            plataforma, concorda com que os direitos autorais a ele referentes se tornem propriedade exclusiva do
+            CESSIONÁRIO, vedado ao autor qualquer reprodução, total ou parcial, em qualquer outra parte ou meio de
+            divulgação, impressa ou eletrônica, sem que seja no âmbito de utilização da própria instituição, não sendo
+            possível aplicar em outras unidades de ensino.
+            Em caso de desligamento do CEDENTE, independentemente de sua motivação, fica preservado a transferência de
+            direitos autorais para o CESSIONÀRIO, impossibilitando que o CEDENTE retire sua produção da plataforma
+            “Banco
+            de Itens SENAI/SC” ou aplique em outras instituições de ensino.
+            A cessão de direitos autorais objeto do presente termo tem vigência por prazo indeterminado, a contar da
+            assinatura eletrônica deste instrumento. Este termo, além de seu conteúdo específico, reger-se-á pelas
+            disposições legais existentes, apropriadas à
+            natureza jurídica do ora pactuado.
+          </div>
+
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>

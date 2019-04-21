@@ -11,7 +11,10 @@ import { LoginComponent } from './components/login/login.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './views/home/home.component';
 import { MenuHeaderComponent } from './views/menu-header/menu-header.component';
-
+import { CreateItemComponent } from './views/create-item/create-item.component';
+import { SearchItemsComponent } from './views/search-items/search-items.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { UserTermComponent } from './components/user-term/user-term.component';
 
 
 @NgModule({
@@ -22,13 +25,17 @@ import { MenuHeaderComponent } from './views/menu-header/menu-header.component';
     LoginComponent,
     HomeComponent,
     MenuHeaderComponent,
+    CreateItemComponent,
+    SearchItemsComponent,
+    UserTermComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFontAwesomeModule,
     NgbModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    NgMultiSelectDropDownModule.forRoot()
   ],
 
   providers: [],
