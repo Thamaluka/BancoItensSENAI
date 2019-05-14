@@ -8,14 +8,12 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { HeaderComponent } from './views/header/header.component';
 import { FooterComponent } from './views/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './views/home/home.component';
 import { MenuHeaderComponent } from './views/menu-header/menu-header.component';
 import { CreateItemComponent } from './views/create-item/create-item.component';
-import { SearchItemsComponent } from './views/search-items/search-items.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { UserTermComponent } from './components/user-term/user-term.component';
-
+import { ListComponent } from './components/list/list.component';
 
 @NgModule({
   declarations: [
@@ -26,8 +24,7 @@ import { UserTermComponent } from './components/user-term/user-term.component';
     HomeComponent,
     MenuHeaderComponent,
     CreateItemComponent,
-    SearchItemsComponent,
-    UserTermComponent,
+    ListComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,10 +32,11 @@ import { UserTermComponent } from './components/user-term/user-term.component';
     AngularFontAwesomeModule,
     NgbModule,
     TooltipModule.forRoot(),
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
   ],
 
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
