@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
   selector: 'login',
@@ -11,7 +12,12 @@ export class LoginComponent implements OnInit {
   courseSettings = {};
   topicList = [];
   topicSettings = {};
-  constructor() { }
+  term = false;
+  today = (moment(new Date).locale("pt").format('LL'));
+
+  constructor() {
+
+  }
 
 
   ngOnInit() {
