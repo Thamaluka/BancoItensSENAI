@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'create-item',
@@ -8,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class CreateItemComponent implements OnInit {
   title: String = "Selecione o Curso"
   describe: String = "Selecione o curso em que o item pertencerá"
+
   curso = null
   materia = null
-  resposta = null
+  matriz = null
+
 
   list = [
     { name: "Analíse e desenvolvimento de sistema" },
@@ -22,7 +25,7 @@ export class CreateItemComponent implements OnInit {
     { name: "Analíse e desenvolvimento de sistema" }
   ]
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -49,4 +52,22 @@ export class CreateItemComponent implements OnInit {
       this.describe = "Se possuir selecione a matriz em que o item pertencerá"
     }
   }
+
+  setMatris(matriz) {
+    this.matriz = matriz;
+    this.goTo();
+  }
+
+  goTo() {
+    const header = {
+      curso: this.curso,
+      materia: this.materia,
+      matriz: this.matriz
+    }
+    this.router.navigateByUrl('/new-item', { state: { header: header } });
+  }
+
+
+
+
 }
