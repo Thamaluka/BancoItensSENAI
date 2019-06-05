@@ -1,0 +1,41 @@
+.subtitles{
+    font-size: 20px;
+}
+
+.subtible-header{
+    font-size: 12px;
+    color:grey;
+}
+
+.squareCabecalho {
+    width: 200px;
+    height: 100px;
+    background: #d0d0d0;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    color: white;
+    padding-left:10px; 
+    padding-right:10px; 
+}
+
+.enunciado{
+    width: 100%;
+}
+
+.options{
+    margin-bottom: 20px;
+    display:flex;
+    justify-content: space-around;
+    align-content: center;
+    flex-direction: row; 
+}
+
+.cancel{
+    display:flex;
+    justify-content: flex-end;
+    align-content: center;
+    flex-direction: row; 
+    width: 100%;
+}

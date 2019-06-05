@@ -1,3 +1,107 @@
-<p>
-  itens works!
-</p>
+<div class="container">
+
+  <div class="d-flex justify-content-between p-3">
+    <div class="subtitles">
+      Curso
+    </div>
+    <div class="subtitles">
+      Unidade Curricular
+    </div>
+    <div class="subtitles">
+      C5
+    </div>
+  </div>
+
+  <div class="shadow-sm p-3 mb-5 bg-white">
+    <div class="container">
+      <div class="row subtitles">Cabeçalho</div>
+      <div class="row subtible-header">São permitidos a criação de três conjuntos de opções( Enunciado, Suporte e
+        Comando) variando
+        entre imagem e texto.</div>
+      <hr />
+
+      <div>
+        <div class="row m-3">
+
+          <div class="enunciado">
+            <div class="d-flex justify-content-between">
+              <p><b>{{type}}</b></p>
+              <div *ngIf="item.type !== null"><a (click)="removeType(i)"><i class="fas fa-times"></i></a></div>
+            </div>
+
+            <ng-container>
+              <div class="options">
+                <div class="squareCabecalho">
+                  <a (click)="addType(i)"><i class="fas fa-plus"></i></a>
+                  <span style="font-size: 15px; color:black; margin-left:20px;">Adicionar Texto</span>
+                </div>
+                <div class="squareCabecalho">
+                  <a> <i class="fas fa-plus"></i></a>
+                  <span style="font-size: 15px; color:black; margin-left:20px;">Adicionar Imagem</span>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #elseTemplate>
+              <label class="subtible-header">Digite seu texto abaixo</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </ng-template>
+
+          </div>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <div class="shadow-sm p-3 mb-5 bg-white">
+    <div class="container">
+      <div class="row subtitles">Respostas</div>
+      <div class="row subtible-header">É obrigatório cinco alternativas, sendo uma correta</div>
+      <hr />
+
+      <div class="row m-3">
+        <div class="enunciado">
+          <div class="d-flex justify-content-between">
+            <div *ngIf="item.type !== null"><a><i class="fas fa-times"></i></a></div>
+            <div class="options">
+              <div class="squareCabecalho">
+                <a (click)="addType(i)"><i class="fas fa-plus"></i></a>
+                <span style="font-size: 15px; color:black; margin-left:20px;">Adicionar Texto</span>
+              </div>
+              <div class="squareCabecalho">
+                <a> <i class="fas fa-plus"></i></a>
+                <span style="font-size: 15px; color:black; margin-left:20px;">Adicionar Imagem</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="shadow-sm p-3 mb-5 bg-white">
+    <div class="container">
+      <div class="row subtitles">Nível de dificuldade</div>
+      <div class="row subtible-header">Selecione um nível de dificuldade</div>
+      <hr />
+      <div *ngFor="let item of cabecalho; let i = index">
+        <div class="row m-3">
+          <div class="enunciado">
+            <div class="d-flex justify-content-between">
+              <div *ngIf="item.type !== null"><a><i class="fas fa-times"></i></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+</div>
