@@ -25,18 +25,21 @@
 
           <div class="enunciado">
             <div class="d-flex justify-content-between">
-              <p><b>{{type}}</b></p>
+              <p><b>{{typeObj}}</b></p>
               <div *ngIf="item.type !== null"><a (click)="removeType(i)"><i class="fas fa-times"></i></a></div>
             </div>
 
             <ng-container>
               <div class="options">
                 <div class="squareCabecalho">
-                  <a (click)="addType(i)"><i class="fas fa-plus"></i></a>
+                  <a (click)="addType(i , 'text')"><i class="fas fa-plus"></i></a>
                   <span style="font-size: 15px; color:black; margin-left:20px;">Adicionar Texto</span>
                 </div>
                 <div class="squareCabecalho">
-                  <a> <i class="fas fa-plus"></i></a>
+                  <label >
+                    <i class="fas fa-plus"></i>
+                    <input type="file" id="uploader" />
+                  </label>
                   <span style="font-size: 15px; color:black; margin-left:20px;">Adicionar Imagem</span>
                 </div>
               </div>

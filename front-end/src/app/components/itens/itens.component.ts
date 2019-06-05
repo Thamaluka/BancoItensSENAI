@@ -9,7 +9,7 @@ export class ItensComponent implements OnInit {
 
   constructor() { }
   ckeditorContent: string = '<p>Some html</p>';
-  type: string = 'Enunciado'
+  typeObj: string = 'Enunciado'
   cabecalho = [
     { text: null, image: null, type: null }
   ]
