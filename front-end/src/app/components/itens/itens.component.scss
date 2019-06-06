@@ -19,14 +19,31 @@
     padding-left:10px; 
     padding-right:10px; 
 }
-input {
+.input {
     display: none;
 }
+
+.imageDiv{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.novo{
+    font-size: 20px;
+    padding: 20px;
+    margin-left: 10px;
+}
+
+.form-check{
+    margin:20px;
+  }
 
 
 .enunciado{
     width: 100%;
-}
+    background-color: whitesmoke;
+}   
 
 .options{
     margin-bottom: 20px;

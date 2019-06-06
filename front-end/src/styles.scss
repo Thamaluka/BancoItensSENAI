@@ -5,15 +5,19 @@
     font-family: roboto;
     src: url(./fonts/Roboto-Regular.ttf) format("opentype");
   }
-
+.btn-outline-secondary,
+.btn-outline-secondary:active,
+.btn-outline-secondary:visited,
 .btn-secondary, 
 .btn-secondary:active, 
 .btn-secondary:visited {
     background-color: #ffffff !important;
     border-color: #299885 !important;
-    border-width: 2px   !important;
+    border-width: 1px   !important;
     color:  #299885 !important;
 }
+.btn-outline-secondary:hover,
+.btn-outline-secondary:checked,
 .btn-secondary:hover,
 .btn-secondary:checked {
     background-color: #299885 !important;
