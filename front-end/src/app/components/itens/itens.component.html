@@ -28,7 +28,6 @@
               <div *ngIf="item.type !== null"><a (click)="removeType(i)"><i class="fas fa-times"
                     style="margin-right: 10px;"></i></a></div>
             </div>
-
             <!-- Seleção do tipo -->
             <ng-container *ngIf="item.type === null; else elseTemplate">
               <div class="options">
@@ -49,7 +48,7 @@
               <!-- Mostrar por tipo -->
               <ng-container *ngIf="item.type === 'text'; else elseTemp">
 
-                <div  id="froala-editor" [froalaEditor] (change)="setCabecalho(input.value , i)" #input>Digite seu texto abaixo</div>
+                <div  id="froala-editor" [froalaEditor] [(froalaModel)]="item.conteudo">Digite seu texto aqui</div>
               </ng-container>
               <ng-template #elseTemp>
                 <div class="imageDiv">
@@ -95,7 +94,7 @@
             </div>
           </div>
           <div *ngFor="let alternativa of respostas">
-            <div class="row">
+            <div class="row w-100">
               <div class="form-check">
                 <label class="custom-control fill-checkbox">
                   <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input"
@@ -104,7 +103,7 @@
                   <span class="fill-control-description"> {{alternativa.alternativa}}</span>
                 </label>
               </div>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              <div  style="width: 80%" id="froala-editor" [froalaEditor] [(froalaModel)]="alternativa.conteudo">Digite seu texto aqui</div>
             </div>
           </div>
         </ng-container>
@@ -163,7 +162,6 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <div class="save">

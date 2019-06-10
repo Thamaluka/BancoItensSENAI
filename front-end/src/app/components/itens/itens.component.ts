@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ItensComponent implements OnInit {
 
   constructor() { }
+  editorContent: any;
   fileData: File = null;
   dificuldade = [
     { id: 1, nivel: 'Muito Fácil', status: false },
@@ -25,10 +26,6 @@ export class ItensComponent implements OnInit {
   respostas: any
   item: any
 
-  cabecalhoObj = [];
-  dificuldadeObj = [];
-  respostaObj = [];
-
   ngOnInit() {
   }
 
@@ -42,7 +39,6 @@ export class ItensComponent implements OnInit {
   }
 
   setCabecalho = (text: string, index: number) => {
-    console.log(text)
     this.cabecalho[index].conteudo = text;
   }
 
@@ -95,7 +91,11 @@ export class ItensComponent implements OnInit {
   }
 
   salvarItem = () => {
-    console.log(this.validarNivel())
+    
+  }
+
+  montarItem = () => {
+
   }
 
   validarCabecalho() {
