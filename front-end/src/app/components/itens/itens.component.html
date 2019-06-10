@@ -49,7 +49,8 @@
               <!-- Mostrar por tipo -->
               <ng-container *ngIf="item.type === 'text'; else elseTemp">
                 <label class="subtible-header">Digite seu texto abaixo</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                  (change)="setCabecalho(input.value , i)" #input></textarea>
               </ng-container>
               <ng-template #elseTemp>
                 <div class="imageDiv">
@@ -60,66 +61,114 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
-
+  <!-- GABARITO -->
   <div class="shadow-sm p-3 mb-5 bg-white">
     <div class="container">
-      <div class="row subtitles">Respostas</div>
+      <div class="row subtitles">Resposta e Gabarito</div>
       <div class="row subtible-header">É obrigatório cinco alternativas, sendo uma correta</div>
+      <div style="display:flex; width:100%; justify-content: flex-end; " *ngIf="typeRespostas !== null">
+        <a (click)="setResposta(null)"><i class="fas fa-times" style="margin-right: 10px;"></i></a>
+      </div>
       <hr />
 
+      <ng-container *ngIf="typeRespostas === null; else respostasTemp">
+        <div class="options">
+          <div class="squareGabarito">
+            <a (click)="setResposta('text')"><i class="fas fa-plus"></i></a>
+            <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Respostas em Texto</span>
+          </div>
+          <div class="squareGabarito">
+            <label>
+              <a (click)="setResposta('img')"><i class="fas fa-plus"></i></a>
+            </label>
+            <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Respostas Imagens</span>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #respostasTemp>
 
+        <ng-container *ngIf="typeRespostas === 'text'; else typeText">
+          <div class="col-4">
+            <div>
+              Selecione o gabarito
+            </div>
+          </div>
+          <div *ngFor="let alternativa of respostas">
+            <div class="row">
+              <div class="form-check">
+                <label class="custom-control fill-checkbox">
+                  <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input"
+                    [checked]=alternativa.gabarito (change)="setGabarito(alternativa)">
+                  <span class="fill-control-indicator"></span>
+                  <span class="fill-control-description"> {{alternativa.alternativa}}</span>
+                </label>
+              </div>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+          </div>
+        </ng-container>
 
+        <ng-template #typeText>
+          <div class="col-4">
+            <div>
+              Gabarito
+            </div>
+          </div>
+          <div *ngFor="let alternativa of respostas;let i = index">
+            <div class="row">
+              <div class="form-check">
+                <label class="custom-control fill-checkbox">
+                  <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input"
+                    [checked]=alternativa.gabarito (change)="setGabarito(alternativa)">
+                  <span class="fill-control-indicator"></span>
+                  <span class="fill-control-description"> {{alternativa.alternativa}}</span>
+                </label>
+
+              </div>
+              <div *ngIf="alternativa.conteudo === null">
+                <div class="squareCabecalho" style="margin: 20px;">
+                  <label>
+                    <i class="fas fa-plus"></i>
+                    <input class="input " type="file" id="uploader" (change)="addImgResposta($event , i)" />
+                  </label>
+                  <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Imagem</span>
+                </div>
+              </div>
+              <div *ngIf="alternativa.conteudo !== null" style="margin: 20px;">
+                <img width="150" height="150" [src]="alternativa.conteudo">
+              </div>
+            </div>
+          </div>
+        </ng-template>
+
+      </ng-template>
     </div>
   </div>
 
-
+  <!-- dificuldade -->
   <div class="shadow-sm p-3 mb-5 bg-white">
     <div class="container">
       <div class="row subtitles">Nível de dificuldade</div>
       <div class="row subtible-header">Selecione um nível de dificuldade</div>
       <hr />
-      <div class=" row  p-3 mb-5  w-100 check-form d-flex justify-content-between" id="body">
-        <div class="form-check">
-          <input class="form-check-input" type="radio" id="defaultCheck1">
-          <label class="form-check-label" for="defaultCheck1">
-            Muito Fácil
+      <div class=" row w-100 check-form d-flex justify-content-between" id="body">
+        <div class="form-check " *ngFor="let item of dificuldade">
+          <label class="custom-control fill-checkbox">
+            <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input" [checked]=item.status
+              (change)="setDificuldade(item)">
+            <span class="fill-control-indicator"></span>
+            <span class="fill-control-description">{{item.nivel}}</span>
           </label>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" id="defaultCheck2">
-          <label class="form-check-label" for="defaultCheck2">
-            Fácil
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" id="defaultCheck2">
-          <label class="form-check-label" for="defaultCheck2">
-            Médio
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="defaultCheck2">
-          <label class="form-check-label" for="defaultCheck2">
-            Difícil
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="defaultCheck2">
-          <label class="form-check-label" for="defaultCheck2">
-            Muito Díficil
-          </label>
-        </div>
-
       </div>
     </div>
 
   </div>
 
-
-
-
+  <div class="save">
+    <button type="submit" class="btn btn-primary btn-sm" (click)="salvarItem()">VISUALIZAR ITEM</button>
+  </div>
 
 </div>

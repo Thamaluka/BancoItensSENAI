@@ -18,9 +18,7 @@ import { UserTermComponent } from './components/user-term/user-term.component';
 import { ItensComponent } from './components/itens/itens.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ListComponent } from './components/list/list.component';
-import { CKEditorModule } from 'ng2-ckeditor';
 import { FormsModule } from '@angular/forms';
-import { MatFileUploadModule } from 'angular-material-fileupload';
 
 
 @NgModule({
@@ -43,9 +41,7 @@ import { MatFileUploadModule } from 'angular-material-fileupload';
     AppRoutingModule,
     AngularFontAwesomeModule,
     NgbModule,
-    CKEditorModule,
     FormsModule,
-    MatFileUploadModule,
     TooltipModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot()
   ],

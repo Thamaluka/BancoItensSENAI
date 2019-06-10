@@ -1,62 +1,95 @@
-.subtitles{
-    font-size: 20px;
+.subtitles {
+  font-size: 20px;
 }
 
-.subtible-header{
-    font-size: 12px;
-    color:grey;
+.subtible-header {
+  font-size: 12px;
+  color: grey;
 }
 
 .squareCabecalho {
-    width: 200px;
-    height: 100px;
-    background: #d0d0d0;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    font-size: 30px;
-    color: white;
-    padding-left:10px; 
-    padding-right:10px; 
+  width: 200px;
+  height: 100px;
+  background: #d0d0d0;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
 }
+
+.squareGabarito {
+  width: 300px;
+  height: 60px;
+  background: #d0d0d0;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
 .input {
-    display: none;
+  display: none;
 }
 
-.imageDiv{
-    width: 100%;
-    display: flex;
-    justify-content: center;
+.imageDiv {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
-.novo{
-    font-size: 20px;
-    padding: 20px;
-    margin-left: 10px;
+.novo {
+  font-size: 20px;
+  padding: 20px;
+  margin-left: 10px;
 }
 
-.form-check{
-    margin:20px;
-  }
-
-
-.enunciado{
-    width: 100%;
-    background-color: whitesmoke;
-}   
-
-.options{
-    margin-bottom: 20px;
-    display:flex;
-    justify-content: space-around;
-    align-content: center;
-    flex-direction: row; 
+.form-check {
+  margin: 20px;
 }
 
-.cancel{
-    display:flex;
-    justify-content: flex-end;
-    align-content: center;
-    flex-direction: row; 
-    width: 100%;
+.enunciado {
+  width: 100%;
+  background-color: whitesmoke;
 }
+
+.options {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  flex-direction: row;
+}
+
+.optionsImg {
+  margin-bottom: 20px;
+  display: flex;
+  align-content: center;
+  flex-direction: row;
+}
+
+.cancel {
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.save {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+
+
+
+
