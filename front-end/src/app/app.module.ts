@@ -19,7 +19,7 @@ import { ItensComponent } from './components/itens/itens.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ListComponent } from './components/list/list.component';
 import { FormsModule } from '@angular/forms';
-
+import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,9 @@ import { FormsModule } from '@angular/forms';
     NgbModule,
     FormsModule,
     TooltipModule.forRoot(),
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    FroalaEditorModule.forRoot(), 
+    FroalaViewModule.forRoot()
   ],
 
   providers: [],

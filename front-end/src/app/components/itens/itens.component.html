@@ -48,13 +48,12 @@
             <ng-template #elseTemplate>
               <!-- Mostrar por tipo -->
               <ng-container *ngIf="item.type === 'text'; else elseTemp">
-                <label class="subtible-header">Digite seu texto abaixo</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                  (change)="setCabecalho(input.value , i)" #input></textarea>
+
+                <div  id="froala-editor" [froalaEditor] (change)="setCabecalho(input.value , i)" #input>Digite seu texto abaixo</div>
               </ng-container>
               <ng-template #elseTemp>
                 <div class="imageDiv">
-                  <img width="150" height="150" [src]="item.image">
+                  <img width="600" height="400" [src]="item.conteudo">
                 </div>
               </ng-template>
             </ng-template>

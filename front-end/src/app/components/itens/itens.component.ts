@@ -42,6 +42,7 @@ export class ItensComponent implements OnInit {
   }
 
   setCabecalho = (text: string, index: number) => {
+    console.log(text)
     this.cabecalho[index].conteudo = text;
   }
 
@@ -129,5 +130,6 @@ export class ItensComponent implements OnInit {
     });
     return count > 0;
   }
+
 
 }
