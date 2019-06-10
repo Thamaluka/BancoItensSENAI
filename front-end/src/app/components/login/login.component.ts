@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ValidationService } from 'src/app/services/ValidationService';
 
 @Component({
   selector: 'login',
@@ -7,6 +9,7 @@ import * as moment from 'moment';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  userForm: any;
   activity = true
   courseList = [];
   courseSettings = {};
@@ -15,8 +18,11 @@ export class LoginComponent implements OnInit {
   term = false;
   today = (moment(new Date).locale("pt").format('LL'));
 
-  constructor() {
-
+  constructor(private formBuilder: FormBuilder) {
+    this.userForm = this.formBuilder.group({
+      'name': ['', Validators.required],
+      'email': ['', [Validators.required, ValidationService.emailValidator]]
+    })
   }
 
 
@@ -39,8 +45,6 @@ export class LoginComponent implements OnInit {
       itemsShowLimit: 1,
       allowSearchFilter: true
     };
-
-
     this.topicList = [
       { item_id: 1, item_text: 'Lógica de Programação' },
       { item_id: 2, item_text: 'Arquitetura de Redes' },
