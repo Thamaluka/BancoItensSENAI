@@ -18,8 +18,9 @@ import { UserTermComponent } from './components/user-term/user-term.component';
 import { ItensComponent } from './components/itens/itens.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { ListComponent } from './components/list/list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
+import { ValidationService } from './services/ValidationService';
 
 @NgModule({
   declarations: [
@@ -42,13 +43,14 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
     AngularFontAwesomeModule,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     TooltipModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot(),
     FroalaEditorModule.forRoot(), 
     FroalaViewModule.forRoot()
   ],
 
-  providers: [],
+  providers: [ValidationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,31 +17,40 @@
 
                     <div class="container">
                       <div class="login-form">
+
                         <!-- FORM -->
-                        <form [formGroup]="userForm" >
+                        <form>
 
                           <div class="form-group">
-                            <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control form-control" id="exampleInputEmail1"
-                              aria-describedby="emailHelp" placeholder="Email">
+                            <label for="inputEmail">Email</label>
+                            <input type="email" class="form-control form-control" id="inputEmail" #emailUser
+                              aria-describedby="emailHelp" placeholder="Email"
+                              (change)="validateEmail(emailUser.value)">
+                            <div *ngIf="!emailValid" class="formError">E-mail inválido</div>
                           </div>
 
                           <div class="form-group">
-                            <label for="exampleInputPassword1">Senha</label>
-                            <input type="password" class="form-control form-control" id="exampleInputPassword1"
+                            <label for="inputPassword">Senha</label>
+                            <input type="password" class="form-control form-control" id="inputPassword"
                               placeholder="Senha">
+
                           </div>
 
                           <div class="pass-forgot">
                             <a href="">Esqueceu seu usuário ou senha?</a>
                           </div>
 
+                          <div *ngIf="!erroLogin" class="alert alert-danger mt-2" role="alert"
+                            style="text-align: center">
+                            Senha ou E-mail inválido
+                          </div>
+
                           <button type="submit" class="btn btn-primary btn-sm btn-block submit-button"
                             routerLink="/home">ACESSAR</button>
                         </form>
-                     
-                     
-                     
+
+
+
                       </div>
                     </div>
                   </ng-template>
@@ -57,65 +66,74 @@
                   <ng-template ngbTabContent>
                     <div class="container">
                       <div class="login-form">
+
                         <form>
                           <div class="form-group">
-                            <label for="inputPassword">Nome Completo</label>
-                            <input type="text" class="form-control form-control" id="exampleInputPassword1"
-                              placeholder="Senha">
+                            <label for="inputNameRes">Nome Completo</label>
+                            <input type="text" class="form-control form-control" id="inputNameRes"
+                              placeholder="Nome Completo">
+                            <div class="formError">E-mail inválido</div>
                           </div>
 
                           <div class="form-group">
-                            <label for="inputPassword">CPF</label>
-                            <input type="text" class="form-control form-control" id="exampleInputPassword1"
-                              placeholder="Senha">
+                            <label for="inputCpf">CPF</label>
+                            <input type="text" class="form-control form-control" id="inputCpf" placeholder="CPF"
+                              (change)="validarCpf(cpf.value)" #cpf>
+                            <div class="formError">CPF inválido</div>
                           </div>
 
                           <div class="form-group">
-                            <label for="inputPassword">Matrícula</label>
-                            <input type="text" class="form-control form-control" id="exampleInputPassword1"
-                              placeholder="Senha">
+                            <label for="inputMatricula">Matrícula</label>
+                            <input type="text" class="form-control form-control" id="inputMatricula"
+                              placeholder="Matrícula">
                           </div>
 
                           <div class="form-group">
-                            <label for="">Selecione o(s) curso(s)</label>
-                            <ng-multiselect-dropdown [placeholder]="'Curso'" [data]="courseList"
+                            <label for="inputCursos">Selecione o(s) curso(s)</label>
+                            <ng-multiselect-dropdown [placeholder]="'Curso'" [data]="courseList" id="inputCursos"
                               [settings]="courseSettings">
                             </ng-multiselect-dropdown>
+                            <div class="formError">É necessário a seleção de pelo menos um curso!</div>
                           </div>
 
                           <div class="form-group">
-                            <label for="">Selecione a(s) unidade(s) curricular(res)</label>
+                            <label for="inputUC">Selecione a(s) unidade(s) curricular(res)</label>
                             <ng-multiselect-dropdown [placeholder]="'Unidade curricular'" [data]="topicList"
-                              [settings]="topicSettings">
+                              id="inputUC" [settings]="topicSettings">
                             </ng-multiselect-dropdown>
+                            <div class="formError">É necessário a seleção de pelo menos uma unidade curricular!</div>
                           </div>
 
                           <div class="form-group">
-                            <label for="inputEmail">Email</label>
-                            <input type="email" class="form-control form-control" id="inputEmail"
+                            <label for="inputEmailRes">Email</label>
+                            <input type="email" class="form-control form-control" id="inputEmailRes"
                               aria-describedby="emailHelp" placeholder="Email">
+                            <div class="formError">E-mail inválido</div>
                           </div>
 
                           <div class="form-group">
-                            <label for="inputPassword">Senha</label>
-                            <input type="password" class="form-control form-control" id="exampleInputPassword1"
+                            <label for="inputPasswordRes">Senha</label>
+                            <input type="password" class="form-control form-control" id="inputPasswordRes"
                               placeholder="Senha">
+                            <div class="formError">Senhal inválida</div>
                           </div>
 
                           <div class="form-group">
-                            <label for="exampleInputPassword1">Confirme sua senha</label>
-                            <input type="password" class="form-control form-control" id="exampleInputPassword1"
+                            <label for="inputPasswordRes1">Confirme sua senha</label>
+                            <input type="password" class="form-control form-control" id="inputPasswordRes1"
                               placeholder="Confirme Senha">
+                            <div class="formError">Senhal inválida</div>
                           </div>
-                          <div class="form-group">
+                          <!--    <div class="form-group">
                             <div class="pass-forgot">
                               <input class="form-check-input " type="radio" value="false">
                               <a href="#" (click)="term=true">Aceitar os termos de uso desse sistema</a>
                             </div>
-                          </div>
+                          </div> -->
                           <button type="submit"
                             class="btn btn-primary btn-sm btn-block submit-button">CADASTRAR</button>
                         </form>
+
                       </div>
 
                     </div>
@@ -125,8 +143,8 @@
 
             </div>
 
-            <div *ngIf="term === true" class="term" >
-          
+            <div *ngIf="term === true" class="term">
+
               <h4 style="text-align:center">TERMO DE USO DO SISTEMA</h4>
               <br>
               <div>
@@ -179,8 +197,8 @@
                 <p>Florianópolis, {{today}} </p>
               </div>
 
-              <button type="submit"
-              class="btn btn-primary btn-sm btn-block submit-button"  routerLink="/home">ACEITAR</button>
+              <button type="submit" class="btn btn-primary btn-sm btn-block submit-button"
+                routerLink="/home">ACEITAR</button>
             </div>
 
           </div>

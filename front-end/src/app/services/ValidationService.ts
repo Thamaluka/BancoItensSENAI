@@ -10,26 +10,50 @@ export class ValidationService {
         return config[validatorName];
     }
 
-    static emailValidator(control) {
-        // RFC 2822 compliant regex
-        if (control.value.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
-            return null;
+    static emailValidator(email) {
+        if (email.match(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/)) {
+            return true;
         } else {
-            return { 'invalidEmailAddress': true };
+            return false;
         }
     }
 
-    static passwordValidator(control) {
+    static passwordValidator(senha) {
         // {6,10}           - Assert password is between 6 and 10 characters
         // (?=.*[0-9])       - Assert a string has at least one number
-        if (control.value.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,10}$/)) {
-            return null;
+        if (senha.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,10}$/)) {
+            return true;
         } else {
-            return { 'invalidPassword': true };
+            return false;
         }
     }
 
-    static cpfValidator(cpf){
-
+    static cpfValidator(cpf) {
+        if (!cpf || cpf.length != 11
+            || cpf == "00000000000"
+            || cpf == "11111111111"
+            || cpf == "22222222222"
+            || cpf == "33333333333"
+            || cpf == "44444444444"
+            || cpf == "55555555555"
+            || cpf == "66666666666"
+            || cpf == "77777777777"
+            || cpf == "88888888888"
+            || cpf == "99999999999")
+            return false
+        var soma = 0
+        var resto
+        for (var i = 1; i <= 9; i++)
+            soma = soma + parseInt(cpf.substring(i - 1, i)) * (11 - i)
+        resto = (soma * 10) % 11
+        if ((resto == 10) || (resto == 11)) resto = 0
+        if (resto != parseInt(cpf.substring(9, 10))) return false
+        soma = 0
+        for (var i = 1; i <= 10; i++)
+            soma = soma + parseInt(cpf.substring(i - 1, i)) * (12 - i)
+        resto = (soma * 10) % 11
+        if ((resto == 10) || (resto == 11)) resto = 0
+        if (resto != parseInt(cpf.substring(10, 11))) return false
+        return true
     }
 }

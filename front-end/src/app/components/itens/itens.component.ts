@@ -23,8 +23,13 @@ export class ItensComponent implements OnInit {
     { id: 3, name: 'Comando', conteudo: null, type: null }
   ]
   typeRespostas: any = null
-  respostas: any
+  respostas: any = null
   item: any
+
+  /* erros */
+  cabecalhoInvalid: boolean = false
+  alternativaInvalid: boolean = false
+  nivelInvalid: boolean = false
 
   ngOnInit() {
   }
@@ -51,7 +56,7 @@ export class ItensComponent implements OnInit {
   }
 
   setDificuldade = (item: any) => {
-    item.status = true;
+    item.status = !item.status;
     this.dificuldade.forEach((element) => {
       if (element.id !== item.id) {
         element.status = false;
@@ -91,11 +96,13 @@ export class ItensComponent implements OnInit {
   }
 
   salvarItem = () => {
-    
-  }
-
-  montarItem = () => {
-
+    if (this.validarCabecalho() && this.validarRespostas() && this.validarNivel()) {
+      this.item = {
+        cabecalho: this.cabecalho,
+        alternativas: this.respostas,
+        dificuldade: this.dificuldade
+      }
+    }
   }
 
   validarCabecalho() {
@@ -106,20 +113,40 @@ export class ItensComponent implements OnInit {
       }
     });
 
-    return count > 0;
+    if (count > 0) {
+      this.cabecalhoInvalid = false;
+      return true;
+    } else {
+      this.cabecalhoInvalid = true;
+      return false;
+    }
+
+
   }
 
   validarRespostas() {
     let alternativa = 0;
     let resposta = 0;
-    this.respostas.forEach(element => {
-      if (element.conteudo !== null)
-        alternativa++;
-      if (element.gabarito === true)
-        resposta++;
-    });
 
-    return alternativa === this.respostas.lenght && resposta === 1;
+    if (this.respostas !== null) {
+      this.respostas.forEach(element => {
+        if (element.conteudo !== null)
+          alternativa++;
+        if (element.gabarito === true)
+          resposta++;
+      });
+    } else {
+      this.alternativaInvalid = true;
+      return false
+    }
+
+    if (alternativa === this.respostas.length && resposta === 1) {
+      this.alternativaInvalid = false;
+      return true
+    } else {
+      this.alternativaInvalid = true;
+      return false
+    }
   }
 
   validarNivel() {
@@ -128,7 +155,14 @@ export class ItensComponent implements OnInit {
       if (element.status)
         count++;
     });
-    return count > 0;
+
+    if (count > 0) {
+      this.nivelInvalid = false;
+      return true;
+    } else {
+      this.nivelInvalid = true;
+      return false;
+    }
   }
 
 
