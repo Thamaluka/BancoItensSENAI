@@ -30,6 +30,7 @@ export class ItensComponent implements OnInit {
   cabecalhoInvalid: boolean = false
   alternativaInvalid: boolean = false
   nivelInvalid: boolean = false
+  form: boolean = false
 
   ngOnInit() {
   }
@@ -96,23 +97,26 @@ export class ItensComponent implements OnInit {
   }
 
   salvarItem = () => {
-    if (this.validarCabecalho() && this.validarRespostas() && this.validarNivel()) {
+    this.validarCabecalho();
+    this.validarRespostas();
+    this.validarNivel();
+    if (this.validarCabecalho && this.validarNivel && this.validarRespostas) {
       this.item = {
         cabecalho: this.cabecalho,
         alternativas: this.respostas,
         dificuldade: this.dificuldade
       }
+      console.log(this.item)
     }
   }
 
-  validarCabecalho() {
+  validarCabecalho = () => {
     let count = 0
     this.cabecalho.forEach(element => {
       if (element.conteudo != null) {
         count++;
       }
     });
-
     if (count > 0) {
       this.cabecalhoInvalid = false;
       return true;
@@ -120,11 +124,9 @@ export class ItensComponent implements OnInit {
       this.cabecalhoInvalid = true;
       return false;
     }
-
-
   }
 
-  validarRespostas() {
+  validarRespostas = () => {
     let alternativa = 0;
     let resposta = 0;
 
@@ -149,13 +151,12 @@ export class ItensComponent implements OnInit {
     }
   }
 
-  validarNivel() {
+  validarNivel = () => {
     let count = 0
     this.dificuldade.forEach(element => {
       if (element.status)
         count++;
     });
-
     if (count > 0) {
       this.nivelInvalid = false;
       return true;
