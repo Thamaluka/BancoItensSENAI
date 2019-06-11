@@ -1,175 +1,191 @@
 <div class="container">
 
-  <div class="d-flex justify-content-between p-3">
-    <div class="subtitles">
-      Curso
-    </div>
-    <div class="subtitles">
-      Unidade Curricular
-    </div>
-    <div class="subtitles">
-      C5
-    </div>
-  </div>
 
-  <div class="shadow-sm p-3 mb-5 ">
-    <div class="container">
-      <div class="row subtitles">Cabeçalho</div>
-      <div [ngClass]="{'subtible-header-error ': cabecalhoInvalid , 'subtible-header': !cabecalhoInvalid }">
-        São
-        permitidos a
-        criação de no maximo três conjuntos de opções variando
-        entre imagem e texto e no mínimo um.</div>
-      <hr />
 
-      <div *ngFor="let item of cabecalho; let i = index">
-        <div class="row m-3">
+  <ng-container *ngIf="item === undefined; else temp">
 
-          <div class="enunciado">
-            <div class="d-flex justify-content-between">
-              <p><b style="margin-left: 10px;">{{item.name}}</b></p>
-              <div *ngIf="item.type !== null"><a (click)="removeType(i)"><i class="fas fa-times"
-                    style="margin-right: 10px;"></i></a></div>
-            </div>
-            <!-- Seleção do tipo -->
-            <ng-container *ngIf="item.type === null; else elseTemplate">
-              <div class="options">
-                <div class="squareCabecalho">
-                  <a (click)="addType(i , 'text')"><i class="fas fa-plus"></i></a>
-                  <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Texto</span>
-                </div>
-                <div class="squareCabecalho">
-                  <label>
-                    <i class="fas fa-plus"></i>
-                    <input class="input " type="file" id="uploader" (change)="imgProgress($event , i)" />
-                  </label>
-                  <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Imagem</span>
-                </div>
+
+    <div class="d-flex justify-content-between p-3">
+      <div class="subtitles">
+        Curso
+      </div>
+      <div class="subtitles">
+        Unidade Curricular
+      </div>
+      <div class="subtitles">
+        C5
+      </div>
+    </div>
+
+    <div class="shadow-sm p-3 mb-5 ">
+      <div class="container">
+        <div class="row subtitles">Cabeçalho</div>
+        <div [ngClass]="{'subtible-header-error ': cabecalhoInvalid , 'subtible-header': !cabecalhoInvalid }">
+          São
+          permitidos a
+          criação de no maximo três conjuntos de opções variando
+          entre imagem e texto e no mínimo um.</div>
+        <hr />
+
+        <div *ngFor="let item of cabecalho; let i = index">
+          <div class="row m-3">
+
+            <div class="enunciado">
+              <div class="d-flex justify-content-between">
+                <p><b style="margin-left: 10px;">{{item.name}}</b></p>
+                <div *ngIf="item.type !== null"><a (click)="removeType(i)"><i class="fas fa-times"
+                      style="margin-right: 10px;"></i></a></div>
               </div>
-            </ng-container>
-            <ng-template #elseTemplate>
-              <!-- Mostrar por tipo -->
-              <ng-container *ngIf="item.type === 'text'; else elseTemp">
-
-                <div id="froala-editor" [froalaEditor] [(froalaModel)]="item.conteudo">Digite seu texto aqui</div>
+              <!-- Seleção do tipo -->
+              <ng-container *ngIf="item.type === null; else elseTemplate">
+                <div class="options">
+                  <div class="squareCabecalho">
+                    <a (click)="addType(i , 'text')"><i class="fas fa-plus"></i></a>
+                    <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Texto</span>
+                  </div>
+                  <div class="squareCabecalho">
+                    <label>
+                      <i class="fas fa-plus"></i>
+                      <input class="input " type="file" id="uploader" (change)="imgProgress($event , i)" />
+                    </label>
+                    <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Imagem</span>
+                  </div>
+                </div>
               </ng-container>
-              <ng-template #elseTemp>
-                <div class="imageDiv">
-                  <img width="600" height="400" [src]="item.conteudo">
-                </div>
+              <ng-template #elseTemplate>
+                <!-- Mostrar por tipo -->
+                <ng-container *ngIf="item.type === 'text'; else elseTemp">
+
+                  <div id="froala-editor" [froalaEditor] [(froalaModel)]="item.conteudo">Digite seu texto aqui</div>
+                </ng-container>
+                <ng-template #elseTemp>
+                  <div class="imageDiv">
+                    <img width="600" height="400" [src]="item.conteudo">
+                  </div>
+                </ng-template>
               </ng-template>
-            </ng-template>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- GABARITO -->
-  <div class="shadow-sm p-3 mb-5 bg-white">
-    <div class="container">
-      <div class="row subtitles">Resposta e Gabarito</div>
-      <div [ngClass]="{'subtible-header-error ': alternativaInvalid , 'subtible-header': !alternativaInvalid }">É obrigatório cinco alternativas, sendo uma correta</div>
-      <div style="display:flex; width:100%; justify-content: flex-end; " *ngIf="typeRespostas !== null">
-        <a (click)="setResposta(null)"><i class="fas fa-times" style="margin-right: 10px;"></i></a>
-      </div>
-      <hr />
-
-      <ng-container *ngIf="typeRespostas === null; else respostasTemp">
-        <div class="options">
-          <div class="squareGabarito">
-            <a (click)="setResposta('text')"><i class="fas fa-plus"></i></a>
-            <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Respostas em Texto</span>
-          </div>
-          <div class="squareGabarito">
-            <label>
-              <a (click)="setResposta('img')"><i class="fas fa-plus"></i></a>
-            </label>
-            <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Respostas Imagens</span>
-          </div>
+    <!-- GABARITO -->
+    <div class="shadow-sm p-3 mb-5 bg-white">
+      <div class="container">
+        <div class="row subtitles">Resposta e Gabarito</div>
+        <div [ngClass]="{'subtible-header-error ': alternativaInvalid , 'subtible-header': !alternativaInvalid }">É
+          obrigatório cinco alternativas, sendo uma correta</div>
+        <div style="display:flex; width:100%; justify-content: flex-end; " *ngIf="typeRespostas !== null">
+          <a (click)="setResposta(null)"><i class="fas fa-times" style="margin-right: 10px;"></i></a>
         </div>
-      </ng-container>
-      <ng-template #respostasTemp>
+        <hr />
 
-        <ng-container *ngIf="typeRespostas === 'text'; else typeText">
-          <div class="col-4">
-            <div>
-              Selecione o gabarito
+        <ng-container *ngIf="typeRespostas === null; else respostasTemp">
+          <div class="options">
+            <div class="squareGabarito">
+              <a (click)="setResposta('text')"><i class="fas fa-plus"></i></a>
+              <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Respostas em Texto</span>
             </div>
-          </div>
-          <div *ngFor="let alternativa of respostas">
-            <div class="row w-100">
-              <div class="form-check">
-                <label class="custom-control fill-checkbox">
-                  <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input"
-                    [checked]=alternativa.gabarito (change)="setGabarito(alternativa)">
-                  <span class="fill-control-indicator"></span>
-                  <span class="fill-control-description"> {{alternativa.alternativa}}</span>
-                </label>
-              </div>
-              <div style="width: 80%" id="froala-editor" [froalaEditor] [(froalaModel)]="alternativa.conteudo">Digite
-                seu texto aqui</div>
+            <div class="squareGabarito">
+              <label>
+                <a (click)="setResposta('img')"><i class="fas fa-plus"></i></a>
+              </label>
+              <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Respostas Imagens</span>
             </div>
           </div>
         </ng-container>
+        <ng-template #respostasTemp>
 
-        <ng-template #typeText>
-          <div class="col-4">
-            <div>
-              Gabarito
-            </div>
-          </div>
-          <div *ngFor="let alternativa of respostas;let i = index">
-            <div class="row">
-              <div class="form-check">
-                <label class="custom-control fill-checkbox">
-                  <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input"
-                    [checked]=alternativa.gabarito (change)="setGabarito(alternativa)">
-                  <span class="fill-control-indicator"></span>
-                  <span class="fill-control-description"> {{alternativa.alternativa}}</span>
-                </label>
-
+          <ng-container *ngIf="typeRespostas === 'text'; else typeText">
+            <div class="col-4">
+              <div>
+                Selecione o gabarito
               </div>
-              <div *ngIf="alternativa.conteudo === null">
-                <div class="squareCabecalho" style="margin: 20px;">
-                  <label>
-                    <i class="fas fa-plus"></i>
-                    <input class="input " type="file" id="uploader" (change)="addImgResposta($event , i)" />
+            </div>
+            <div *ngFor="let alternativa of respostas">
+              <div class="row w-100">
+                <div class="form-check">
+                  <label class="custom-control fill-checkbox">
+                    <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input"
+                      [checked]=alternativa.gabarito (change)="setGabarito(alternativa)">
+                    <span class="fill-control-indicator"></span>
+                    <span class="fill-control-description"> {{alternativa.alternativa}}</span>
                   </label>
-                  <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Imagem</span>
+                </div>
+                <div style="width: 80%" id="froala-editor" [froalaEditor] [(froalaModel)]="alternativa.conteudo">Digite
+                  seu texto aqui</div>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-template #typeText>
+            <div class="col-4">
+              <div>
+                Gabarito
+              </div>
+            </div>
+            <div *ngFor="let alternativa of respostas;let i = index">
+              <div class="row">
+                <div class="form-check">
+                  <label class="custom-control fill-checkbox">
+                    <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input"
+                      [checked]=alternativa.gabarito (change)="setGabarito(alternativa)">
+                    <span class="fill-control-indicator"></span>
+                    <span class="fill-control-description"> {{alternativa.alternativa}}</span>
+                  </label>
+
+                </div>
+                <div *ngIf="alternativa.conteudo === null">
+                  <div class="squareCabecalho" style="margin: 20px;">
+                    <label>
+                      <i class="fas fa-plus"></i>
+                      <input class="input " type="file" id="uploader" (change)="addImgResposta($event , i)" />
+                    </label>
+                    <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Imagem</span>
+                  </div>
+                </div>
+                <div *ngIf="alternativa.conteudo !== null" style="margin: 20px;">
+                  <img width="150" height="150" [src]="alternativa.conteudo">
                 </div>
               </div>
-              <div *ngIf="alternativa.conteudo !== null" style="margin: 20px;">
-                <img width="150" height="150" [src]="alternativa.conteudo">
-              </div>
             </div>
-          </div>
+          </ng-template>
+
         </ng-template>
-
-      </ng-template>
+      </div>
     </div>
-  </div>
 
-  <!-- dificuldade -->
-  <div class="shadow-sm p-3 mb-5 bg-white">
-    <div class="container">
-      <div class="row subtitles">Nível de dificuldade</div>
-      <div  [ngClass]="{'subtible-header-error ': nivelInvalid , 'subtible-header': !nivelInvalid }">É obrigatório um nível de dificuldade</div>
-      <hr />
-      <div class=" row w-100 check-form d-flex justify-content-between" id="body">
-        <div class="form-check " *ngFor="let item of dificuldade">
-          <label class="custom-control fill-checkbox">
-            <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input" [checked]=item.status
-              (change)="setDificuldade(item)">
-            <span class="fill-control-indicator"></span>
-            <span class="fill-control-description">{{item.nivel}}</span>
-          </label>
+    <!-- dificuldade -->
+    <div class="shadow-sm p-3 mb-5 bg-white">
+      <div class="container">
+        <div class="row subtitles">Nível de dificuldade</div>
+        <div [ngClass]="{'subtible-header-error ': nivelInvalid , 'subtible-header': !nivelInvalid }">É obrigatório um
+          nível de dificuldade</div>
+        <hr />
+        <div class=" row w-100 check-form d-flex justify-content-between" id="body">
+          <div class="form-check " *ngFor="let item of dificuldade">
+            <label class="custom-control fill-checkbox">
+              <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input"
+                [checked]=item.status (change)="setDificuldade(item)">
+              <span class="fill-control-indicator"></span>
+              <span class="fill-control-description">{{item.nivel}}</span>
+            </label>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="save">
-    <button type="submit" class="btn btn-primary btn-sm" (click)="salvarItem()">VISUALIZAR ITEM</button>
-  </div>
+    <div class="save">
+      <button type="submit" class="btn btn-primary btn-sm" (click)="salvarItem()">VISUALIZAR ITEM</button>
+    </div>
+
+
+  </ng-container>
+  <ng-template #temp>
+    <item-view [item]="item"></item-view>
+  </ng-template>
+
+
+
 
 </div>

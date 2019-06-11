@@ -21,6 +21,7 @@ import { ListComponent } from './components/list/list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { ValidationService } from './services/ValidationService';
+import { ItemViewComponent } from './views/item-view/item-view.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ValidationService } from './services/ValidationService';
     UserTermComponent,
     ForgotPasswordComponent,
     ItensComponent,
-    ListComponent
+    ListComponent,
+    ItemViewComponent
   ],
   imports: [
     BrowserModule,

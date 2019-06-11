@@ -33,6 +33,7 @@ export class ItensComponent implements OnInit {
   form: boolean = false
 
   ngOnInit() {
+    console.log(this)
   }
 
   imgProgress(fileInput: any, index: number) {
@@ -100,13 +101,12 @@ export class ItensComponent implements OnInit {
     this.validarCabecalho();
     this.validarRespostas();
     this.validarNivel();
-    if (this.validarCabecalho && this.validarNivel && this.validarRespostas) {
+    if (!this.cabecalhoInvalid && !this.nivelInvalid && !this.alternativaInvalid) {
       this.item = {
         cabecalho: this.cabecalho,
         alternativas: this.respostas,
         dificuldade: this.dificuldade
       }
-      console.log(this.item)
     }
   }
 
