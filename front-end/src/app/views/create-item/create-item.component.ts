@@ -53,8 +53,9 @@ export class CreateItemComponent implements OnInit {
     }
   }
 
-  setMatris(matriz) {
+  setMatriz(matriz) {
     this.matriz = matriz;
+    console.log(matriz)
     this.goTo();
   }
 

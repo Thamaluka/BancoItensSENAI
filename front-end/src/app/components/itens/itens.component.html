@@ -40,12 +40,12 @@
               <ng-container *ngIf="item.type === null; else elseTemplate">
                 <div class="options">
                   <div class="squareCabecalho">
-                    <a (click)="addType(i , 'text')"><i class="fas fa-plus"></i></a>
+                    <a (click)="addType(i , 'text')"><i class="fas fa-pen"></i></a>
                     <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Texto</span>
                   </div>
                   <div class="squareCabecalho">
                     <label>
-                      <i class="fas fa-plus"></i>
+                      <i class="far fa-image"></i>
                       <input class="input " type="file" id="uploader" (change)="imgProgress($event , i)" />
                     </label>
                     <span style="font-size: 12px; color:black; margin-left:20px;">Adicionar Imagem</span>
@@ -99,7 +99,7 @@
           <ng-container *ngIf="typeRespostas === 'text'; else typeText">
             <div class="col-4">
               <div>
-                Selecione o gabarito
+                <b>GABARITO</b>
               </div>
             </div>
             <div *ngFor="let alternativa of respostas">

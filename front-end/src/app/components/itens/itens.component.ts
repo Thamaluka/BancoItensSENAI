@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-itens',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ItensComponent implements OnInit {
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) { }
   editorContent: any;
   fileData: File = null;
   dificuldade = [
@@ -25,15 +26,22 @@ export class ItensComponent implements OnInit {
   typeRespostas: any = null
   respostas: any = null
   item: any
-
+  state: any
   /* erros */
   cabecalhoInvalid: boolean = false
   alternativaInvalid: boolean = false
   nivelInvalid: boolean = false
   form: boolean = false
+  curso: any
+  unidadeCurricular:any
+  matriz:any
 
   ngOnInit() {
-    console.log(this)
+    this.state = this.activatedRoute.paramMap
+      .pipe((() => window.history.state))
+    console.log(this.state.header.curso.name)
+    //this.curso = this.state.header.curso.name;
+  //  this.unidadeCurricular = this.state.header.matéria.name;
   }
 
   imgProgress(fileInput: any, index: number) {
@@ -55,6 +63,7 @@ export class ItensComponent implements OnInit {
 
   removeType = (index: number) => {
     this.cabecalho[index].type = null;
+    this.cabecalho[index].conteudo = null;
   }
 
   setDificuldade = (item: any) => {
