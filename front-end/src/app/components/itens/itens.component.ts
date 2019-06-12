@@ -33,15 +33,13 @@ export class ItensComponent implements OnInit {
   nivelInvalid: boolean = false
   form: boolean = false
   curso: any
-  unidadeCurricular:any
-  matriz:any
+  unidadeCurricular: any
+  matriz: any
 
   ngOnInit() {
     this.state = this.activatedRoute.paramMap
       .pipe((() => window.history.state))
-    console.log(this.state.header.curso.name)
-    //this.curso = this.state.header.curso.name;
-  //  this.unidadeCurricular = this.state.header.matéria.name;
+    console.log(this.state.header)
   }
 
   imgProgress(fileInput: any, index: number) {
@@ -114,7 +112,10 @@ export class ItensComponent implements OnInit {
       this.item = {
         cabecalho: this.cabecalho,
         alternativas: this.respostas,
-        dificuldade: this.dificuldade
+        dificuldade: this.dificuldade,
+        matriz: this.state.header.matriz.name,
+        curso: this.state.header.curso.name,
+        uc: this.state.header.materia.name
       }
     }
   }

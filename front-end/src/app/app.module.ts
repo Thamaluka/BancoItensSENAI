@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { ValidationService } from './services/ValidationService';
 import { ItemViewComponent } from './views/item-view/item-view.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -46,12 +47,12 @@ import { ItemViewComponent } from './views/item-view/item-view.component';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     TooltipModule.forRoot(),
     NgMultiSelectDropDownModule.forRoot(),
     FroalaEditorModule.forRoot(), 
     FroalaViewModule.forRoot()
   ],
-
   providers: [ValidationService],
   bootstrap: [AppComponent]
 })
