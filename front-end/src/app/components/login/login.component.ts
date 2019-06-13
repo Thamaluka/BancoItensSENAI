@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { ValidationService } from 'src/app/services/ValidationService';
+import { CursosService } from 'src/app/services/CursosService';
+import { UnidadeService } from 'src/app/services/UnidadeService';
 
 @Component({
   selector: 'login',
@@ -21,12 +23,20 @@ export class LoginComponent implements OnInit {
   emailValid: boolean = true;
   erroLogin: boolean = true;
 
-  constructor() {
-
-  }
+  constructor(
+    private cursoService: CursosService,
+    private unidadeService: UnidadeService
+  ) { }
 
 
   ngOnInit() {
+    /* this.cursoService.getAllCursos().subscribe((data) => {
+      this.courseList.push(data);
+    })
+
+    this.unidadeService.getAllUnidadesCurriculares().subscribe((data) => {
+      this.courseList.push(data);
+    }) */
 
     this.courseList = [
       { item_id: 1, item_text: 'Técnico em Programação de Jogos' },
@@ -76,4 +86,13 @@ export class LoginComponent implements OnInit {
   validarCpf(cpf: string) {
     console.log(ValidationService.cpfValidator(cpf))
   }
+
+  getUnidadeCurricularPorCurso(id){
+    //Será uma lista
+    this.unidadeService.getUnidadesCurricularesByCurso(id).subscribe((data) => {
+      this.courseList.push(data);
+    })
+  }
+
+
 }
