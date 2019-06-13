@@ -12,10 +12,11 @@ import { UnidadeService } from 'src/app/services/UnidadeService';
 export class LoginComponent implements OnInit {
   userForm: any;
   activity = true
-  courseList = [];
-  courseSettings = {};
-  topicList = [];
-  topicSettings = {};
+  cursosSelected = []
+  courseList = []
+  courseSettings = {}
+  topicList = []
+  topicSettings = {}
   term = false;
   today = (moment(new Date).locale("pt").format('LL'));
 
@@ -30,48 +31,44 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    /* this.cursoService.getAllCursos().subscribe((data) => {
-      this.courseList.push(data);
+    this.cursoService.getAllCursos().subscribe((data) => {
+      this.courseList = data
     })
-
-    this.unidadeService.getAllUnidadesCurriculares().subscribe((data) => {
-      this.courseList.push(data);
-    }) */
-
-    this.courseList = [
-      { item_id: 1, item_text: 'Técnico em Programação de Jogos' },
-      { item_id: 2, item_text: 'Técnico em Alimentos' },
-      { item_id: 3, item_text: 'Técnico em Segurança da Informação' },
-      { item_id: 4, item_text: 'Técnico em Analise de Sistema' },
-      { item_id: 5, item_text: 'Técnico em Redes' }
-    ];
 
     this.courseSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'nome',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
       allowSearchFilter: true
     };
-    this.topicList = [
-      { item_id: 1, item_text: 'Lógica de Programação' },
-      { item_id: 2, item_text: 'Arquitetura de Redes' },
-      { item_id: 3, item_text: 'Segurança da Informação' },
-      { item_id: 4, item_text: 'Relação humana no trabalho' },
-      { item_id: 5, item_text: 'Programação orientada a objetos' }
-    ];
+
 
     this.topicSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'nome',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
       allowSearchFilter: true
     };
+  }
+
+  onCursoSelect(curso) {
+    this.cursosSelected.push(curso);
+    this.getUnidadeCurricularPorCurso(curso.id);
+  }
+
+  onCursoDeselect(curso) {
+    let newList = this.cursosSelected.filter(item => item.id !== curso.id)
+    this.cursosSelected = newList;
+  }
+
+  onCursoSelectAll(cursos) {
+    this.cursosSelected = cursos;
   }
 
 
@@ -87,10 +84,16 @@ export class LoginComponent implements OnInit {
     console.log(ValidationService.cpfValidator(cpf))
   }
 
-  getUnidadeCurricularPorCurso(id){
-    //Será uma lista
-    this.unidadeService.getUnidadesCurricularesByCurso(id).subscribe((data) => {
-      this.courseList.push(data);
+  getUnidadeCurricularPorCurso(id) {
+    this.cursoService.getUnidadesCurricularesByCurso(id).subscribe((data) => {
+      if (this.topicList.length > 0)
+        data.forEach(element => {
+            this.topicList.push(element)
+        });
+        else
+        this.topicList = data;
+
+        console.log( this.topicList)
     })
   }
 

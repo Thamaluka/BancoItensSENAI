@@ -38,16 +38,4 @@ export class UnidadeService {
             map(this.extractData));
     }
 
-    getUnidadesCurricularesByCurso(id_curso): Observable<any> {
-        const params = new HttpParams({
-            fromObject: {
-                id: id_curso
-            }
-        });
-        return this.http.get(this.endpoint + "/curso", { params: params }).pipe(
-            map(this.extractData));
-    }
-
-
-
 }

@@ -80,7 +80,7 @@
                             <div class="formError">CPF inválido</div>
                           </div>
 
-                          <div class="form-group">
+                          <div class="form-group" >
                             <label for="inputMatricula">Matrícula</label>
                             <input type="text" class="form-control form-control" id="inputMatricula"
                               placeholder="Matrícula">
@@ -88,15 +88,16 @@
 
                           <div class="form-group">
                             <label for="inputCursos">Selecione o(s) curso(s)</label>
-                            <ng-multiselect-dropdown [placeholder]="'Curso'" [data]="courseList" id="inputCursos"
-                              [settings]="courseSettings">
+                            <ng-multiselect-dropdown class="custom-asset-dropdown" [placeholder]="'Curso'" [data]="courseList" id="inputCursos"
+                              [settings]="courseSettings" (onSelect)="onCursoSelect($event)"
+                              (onDeSelect)="onCursoDeselect($event)" (onSelectAll)="onCursoSelectAll($event)" >
                             </ng-multiselect-dropdown>
                             <div class="formError">É necessário a seleção de pelo menos um curso!</div>
                           </div>
 
-                          <div class="form-group">
+                          <div class="form-group" >
                             <label for="inputUC">Selecione a(s) unidade(s) curricular(res)</label>
-                            <ng-multiselect-dropdown [placeholder]="'Unidade curricular'" [data]="topicList"
+                            <ng-multiselect-dropdown class="custom-asset-dropdown" [placeholder]="'Unidade curricular'" [data]="topicList"
                               id="inputUC" [settings]="topicSettings">
                             </ng-multiselect-dropdown>
                             <div class="formError">É necessário a seleção de pelo menos uma unidade curricular!</div>
