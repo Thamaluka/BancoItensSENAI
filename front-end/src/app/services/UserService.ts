@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { User } from '../models/User';
 
 @Injectable({
     providedIn: 'root'
 })
-export class UnidadeService {
-    endpoint = 'http://localhost:3000/unidadesCurriculares';
+export class UserService {
+    endpoint = 'http://localhost:3000/user';
     httpOptions = {
         headers: new HttpHeaders({
             'Content-Type': 'application/json',
@@ -22,20 +23,10 @@ export class UnidadeService {
         return body || {};
     }
 
-    getAllUnidadesCurriculares(): Observable<any> {
-        return this.http.get(this.endpoint, this.httpOptions).pipe(
-            map(this.extractData));
+    newUser(user): Observable<any> {
+        
+        return this.http.post(this.endpoint, JSON.stringify(user), this.httpOptions).pipe(
+            map(this.extractData)
+        );
     }
-
-
-    getUnidadeCurricularById(id): Observable<any> {
-        const body = new HttpParams({
-            fromObject: {
-                id: id
-            }
-        });
-        return this.http.get(this.endpoint, { params: body }).pipe(
-            map(this.extractData));
-    }
-
 }

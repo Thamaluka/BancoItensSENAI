@@ -14,10 +14,10 @@
         </div>
 
         <div class="col justify-items-flex-end">
-          <div *ngIf="!isLogin">
+          <div *ngIf="isLogin">
             <div class="user">
               <a class="user-name">
-                João da Silva
+                {{user.nome}}
                 <i class="fas fa-sign-out-alt" id=user-name></i>
               </a>
             </div>

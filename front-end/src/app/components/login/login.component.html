@@ -69,68 +69,79 @@
                           <div class="form-group">
                             <label for="inputNameRes">Nome Completo</label>
                             <input type="text" class="form-control form-control" id="inputNameRes"
-                              placeholder="Nome Completo">
-                            <div class="formError">E-mail inválido</div>
+                              [(ngModel)]="user.nome" name="nome" placeholder="Nome Completo">
+                            <div *ngIf="!obrigatorios" class="formError">Campo Obrigatório</div>
                           </div>
 
                           <div class="form-group">
                             <label for="inputCpf">CPF</label>
                             <input type="text" class="form-control form-control" id="inputCpf" placeholder="CPF"
-                              (change)="validarCpf(cpf.value)" #cpf>
-                            <div class="formError">CPF inválido</div>
+                              [(ngModel)]="user.cpf" name="cpf" (change)="validarCpf(cpf.value)" #cpf>
+                            <div class="formInfo">Apenas números</div>
+                            <div *ngIf="!cpfValid" class="formError">CPF inválido</div>
                           </div>
 
-                          <div class="form-group" >
+                          <div class="form-group">
                             <label for="inputMatricula">Matrícula</label>
                             <input type="text" class="form-control form-control" id="inputMatricula"
-                              placeholder="Matrícula">
+                              [(ngModel)]="user.matricula" name="matricula" placeholder="Matrícula">
+                            <div class="formInfo">Apenas números</div>
+                            <div *ngIf="!obrigatorios" class="formError">Campo Obrigatório</div>
                           </div>
 
                           <div class="form-group">
                             <label for="inputCursos">Selecione o(s) curso(s)</label>
-                            <ng-multiselect-dropdown class="custom-asset-dropdown" [placeholder]="'Curso'" [data]="courseList" id="inputCursos"
-                              [settings]="courseSettings" (onSelect)="onCursoSelect($event)"
-                              (onDeSelect)="onCursoDeselect($event)" (onSelectAll)="onCursoSelectAll($event)" >
+                            <ng-multiselect-dropdown class="custom-asset-dropdown" [placeholder]="'Curso'"
+                              [data]="courseList" id="inputCursos" [settings]="courseSettings"
+                              (onSelect)="onCursoSelect($event)" (onDeSelect)="onCursoDeselect($event)"
+                              (onSelectAll)="onCursoSelectAll($event)">
                             </ng-multiselect-dropdown>
-                            <div class="formError">É necessário a seleção de pelo menos um curso!</div>
+                            <div *ngIf="!cursoValid" class="formError">É necessário a seleção de pelo menos um curso!
+                            </div>
                           </div>
 
-                          <div class="form-group" >
+                          <div class="form-group">
                             <label for="inputUC">Selecione a(s) unidade(s) curricular(res)</label>
-                            <ng-multiselect-dropdown class="custom-asset-dropdown" [placeholder]="'Unidade curricular'" [data]="topicList"
-                              id="inputUC" [settings]="topicSettings">
+                            <ng-multiselect-dropdown class="custom-asset-dropdown" [placeholder]="'Unidade curricular'"
+                              [data]="topicList" id="inputUC" [settings]="topicSettings" (onSelect)="onUcSelect($event)"
+                              (onDeSelect)="onUcDeselect($event)" (onSelectAll)="onUcAll($event)">
                             </ng-multiselect-dropdown>
-                            <div class="formError">É necessário a seleção de pelo menos uma unidade curricular!</div>
+                            <div *ngIf="!ucValid" class="formError">É necessário a seleção de pelo menos uma unidade
+                              curricular!</div>
                           </div>
 
                           <div class="form-group">
                             <label for="inputEmailRes">Email</label>
                             <input type="email" class="form-control form-control" id="inputEmailRes"
+                              (change)="validateEmail(email.value)" #email [(ngModel)]="user.email" name="email"
                               aria-describedby="emailHelp" placeholder="Email">
-                            <div class="formError">E-mail inválido</div>
+                            <div *ngIf="!emailValid" class="formError">E-mail inválido</div>
                           </div>
 
                           <div class="form-group">
                             <label for="inputPasswordRes">Senha</label>
                             <input type="password" class="form-control form-control" id="inputPasswordRes"
+                              (change)="validatePassworld(senha.value)" #senha [(ngModel)]="user.senha" name="senha"
                               placeholder="Senha">
-                            <div class="formError">Senhal inválida</div>
+                            <div class="formInfo">A senha deve conter no mínimo 6(seis) caracteres <br />e no máximo
+                              10(dez) e ao menos 1(um) números </div>
+                            <div *ngIf="!senhaValid" class="formError">Senha inválida </div>
                           </div>
 
                           <div class="form-group">
                             <label for="inputPasswordRes1">Confirme sua senha</label>
                             <input type="password" class="form-control form-control" id="inputPasswordRes1"
-                              placeholder="Confirme Senha">
-                            <div class="formError">Senhal inválida</div>
+                              #confirmSenha (change)="confirmarSenha(confirmSenha.value)" placeholder="Confirme Senha">
+                            <div *ngIf="!senhaIsEqual" class="formError">A não confere</div>
                           </div>
-                          <div class="form-group">
+                          <!--                   <div class="form-group">
                             <div class="pass-forgot">
                               <input class="form-check-input " type="radio" value="false">
                               <a href="#" (click)="term=true">Aceitar os termos de uso desse sistema</a>
                             </div>
-                          </div>
-                          <button type="submit"
-                            class="btn btn-primary btn-sm btn-block submit-button">CADASTRAR</button>
+                          </div> -->
+                          <button type="submit" class="btn btn-primary btn-sm btn-block submit-button"
+                            (click)="submit()">CADASTRAR</button>
                         </form>
 
                       </div>
@@ -147,11 +158,11 @@
               <h4 style="text-align:center">TERMO DE USO DO SISTEMA</h4>
               <br>
               <div>
-                <p>Pelo presente instrumento, de um lado, o <strong> Autor do(s) item(ns), (NOME DO DOCENTE),
+                <p>Pelo presente instrumento, de um lado, o <strong> Autor do(s) item(ns), {{user.nome}},
                     docente,
-                    portador do RG n.º(NÚMERO DO RG), inscrito no
-                    CPF sob n.º (NÚMERO DO CPF)</strong>, colaborador do SENAI/SC na unidade de (UNIDADE SENAI) e
-                  registro de matrícula (NÚMERO DA MATRICULA), doravante denominado de CEDENTE e, de outro lado, o
+                    inscrito no
+                    CPF sob n.º {{user.cpf}}</strong>, colaborador do SENAI/SC
+                  registrado na matrícula {{user.matricula}}, doravante denominado de CEDENTE e, de outro lado, o
                   <strong>Serviço
                     Nacional de Aprendizagem Industrial de Santa Catarina</strong>, pessoa jurídica de direito privado,
                   inscrito no
@@ -197,7 +208,7 @@
               </div>
 
               <button type="submit" class="btn btn-primary btn-sm btn-block submit-button"
-                routerLink="/home">ACEITAR</button>
+                (click)="createNewUser()">ACEITAR</button>
             </div>
 
           </div>
