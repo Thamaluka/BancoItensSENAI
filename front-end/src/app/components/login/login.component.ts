@@ -24,7 +24,12 @@ export class LoginComponent implements OnInit {
 
   user = new User();
 
-  /* Validação */
+  email: string
+  passworld: string
+  emailLogin: boolean = true;
+
+
+  /* Validação Registro*/
   emailValid: boolean = true;
   senhaValid: boolean = true;
   senhaIsEqual: boolean = true;
@@ -50,8 +55,6 @@ export class LoginComponent implements OnInit {
       singleSelection: false,
       idField: 'id',
       textField: 'nome',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
       allowSearchFilter: true
     };
@@ -61,9 +64,8 @@ export class LoginComponent implements OnInit {
       singleSelection: false,
       idField: 'id',
       textField: 'nome',
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
       itemsShowLimit: 1,
+      noDataAvailablePlaceholderText: "Selecione um curso",
       allowSearchFilter: true
     };
   }
@@ -75,12 +77,17 @@ export class LoginComponent implements OnInit {
 
   onCursoDeselect(curso) {
     let newList = this.cursosSelected.filter(item => item !== curso.id)
+    newList.forEach(element => {
+      this.getUnidadeCurricularPorCurso(element.id)
+    });
     this.cursosSelected = newList;
   }
 
   onCursoSelectAll(cursos) {
+    this.cursosSelected = [];
     cursos.forEach(element => {
       this.cursosSelected.push(element.id)
+      this.getUnidadeCurricularPorCurso(element.id)
     });
 
   }
@@ -113,7 +120,10 @@ export class LoginComponent implements OnInit {
 
 
   validateEmail(email: string = "") {
-    this.emailValid = ValidationService.emailValidator(email)
+    if (!this.activity)
+      this.emailValid = ValidationService.emailValidator(email)
+    else
+      this.emailLogin = ValidationService.emailValidator(this.email)
   }
 
   validatePassworld(passworld: string = "") {
@@ -157,10 +167,29 @@ export class LoginComponent implements OnInit {
   createNewUser() {
     this.user.cursos = this.cursosSelected;
     this.user.uc = this.ucsSelected;
-    console.log(this.user)
     this.userService.newUser(this.user).subscribe((data) => {
-      console.log("DATA: ", data)
-      this.router.navigateByUrl('/home');
+      location.reload();
     })
   }
+
+
+  login() {
+    if (this.email && this.passworld){
+     
+      let user = {
+        email:this.email,
+        senha:this.passworld
+      }
+      this.router.navigateByUrl('/home')
+      this.userService.login(user).subscribe((data) => {
+        if(data)
+          this.router.navigateByUrl('/home')
+      })
+    }
+   
+
+  }
+
+
+
 }

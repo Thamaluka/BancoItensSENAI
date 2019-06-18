@@ -23,15 +23,15 @@
 
                           <div class="form-group">
                             <label for="inputEmail">Email</label>
-                            <input type="email" class="form-control form-control" id="inputEmail" #emailUser
+                            <input type="email" class="form-control form-control" id="inputEmail" #emailUser name="emailLogin" [(ngModel)]="email"
                               aria-describedby="emailHelp" placeholder="Email"
                               (change)="validateEmail(emailUser.value)">
-                            <div *ngIf="!emailValid" class="formError">E-mail inválido</div>
+                            <div *ngIf="!emailLogin" class="formError">E-mail inválido</div>
                           </div>
 
                           <div class="form-group">
                             <label for="inputPassword">Senha</label>
-                            <input type="password" class="form-control form-control" id="inputPassword"
+                            <input type="password" class="form-control form-control" id="inputPassword" name="senhaLogin" [(ngModel)]="passworld"
                               placeholder="Senha">
 
                           </div>
@@ -46,7 +46,7 @@
                           </div>
 
                           <button type="submit" class="btn btn-primary btn-sm btn-block submit-button"
-                            routerLink="/home">ACESSAR</button>
+                            (click)="login()" >ACESSAR</button>
                         </form>
 
                       </div>
@@ -123,8 +123,8 @@
                             <input type="password" class="form-control form-control" id="inputPasswordRes"
                               (change)="validatePassworld(senha.value)" #senha [(ngModel)]="user.senha" name="senha"
                               placeholder="Senha">
-                            <div class="formInfo">A senha deve conter no mínimo 6(seis) caracteres <br />e no máximo
-                              10(dez) e ao menos 1(um) números </div>
+                            <div class="formInfo">A senha deve conter no mínimo 8(oito) caracteres <br />e no máximo
+                              10(dez) e ao menos 1(um) número e 1(uma) letra maíuscula   </div>
                             <div *ngIf="!senhaValid" class="formError">Senha inválida </div>
                           </div>
 

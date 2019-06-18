@@ -21,7 +21,7 @@ export class ValidationService {
     static passwordValidator(senha) {
         // {6,10}           - Assert password is between 6 and 10 characters
         // (?=.*[0-9])       - Assert a string has at least one number
-        if (senha.match(/^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{6,10}$/)) {
+        if (senha.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)) {
             return true;
         } else {
             return false;
