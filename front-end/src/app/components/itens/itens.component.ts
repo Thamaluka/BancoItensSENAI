@@ -39,7 +39,9 @@ export class ItensComponent implements OnInit {
   ngOnInit() {
     this.state = this.activatedRoute.paramMap
       .pipe((() => window.history.state))
-    console.log(this.state.header)
+    this.curso = !!this.state.header.curso.nome ? this.state.header.curso.nome : null
+    this.unidadeCurricular =!!this.state.header.materia.nome ? this.state.header.materia.nome : null
+    this.matriz = !!this.state.header.matriz ? this.state.header.matriz.matriz : "" 
   }
 
   imgProgress(fileInput: any, index: number) {

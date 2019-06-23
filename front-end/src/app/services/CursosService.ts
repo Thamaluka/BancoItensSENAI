@@ -47,6 +47,13 @@ export class CursosService {
       map(this.extractData));
   }
 
+  getUcByUser(id): Observable<any> {
+    return this.http.get(`${this.endpoint}/${id}/unidadeCurricular`, this.httpOptions).pipe(
+      map(this.extractData));
+  }
+
+  
+
 
 
 }

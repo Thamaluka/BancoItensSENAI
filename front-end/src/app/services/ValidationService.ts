@@ -28,7 +28,14 @@ export class ValidationService {
         }
     }
 
-    static cpfValidator(cpf) {
+    static cpfValidator(stg) {
+        var cpf = stg;
+        for (let index = 0; index < stg.length; index++) {
+            cpf = cpf.replace(".", "");
+            cpf = cpf.replace("-", "");
+            cpf = cpf.replace(",", "");
+        }
+
         if (!cpf || cpf.length != 11
             || cpf == "00000000000"
             || cpf == "11111111111"

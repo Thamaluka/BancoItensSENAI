@@ -9,10 +9,19 @@ import { User } from '../../models/User';
 export class HeaderComponent implements OnInit {
   isLogin: boolean = false
   routerName: string = 'Home';
-  user = new User();
-  constructor() { }
+  state: any;
+  user = localStorage.getItem('userName');
+
+  constructor(
+  ) {
+
+  }
 
   ngOnInit() {
+    console.log(!this.user)
   }
+
+
+
 
 }

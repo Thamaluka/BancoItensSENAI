@@ -36,7 +36,7 @@ export class UserService {
                 senha: user.senha
             }
         });
-        return this.http.get(this.endpoint, this.httpOptions).pipe(
+        return this.http.get(this.endpoint, { params: params }).pipe(
             map(this.extractData)
         );
     }

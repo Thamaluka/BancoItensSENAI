@@ -24,68 +24,13 @@
 
   <div *ngIf="matriz === null && curso !== null && materia !== null">
     <div class=" row shadow-sm p-3 mb-5 bg-white w-100 check-form " id="body">
-      <div class="form-check">
+
+      <div class="form-check" *ngFor="let matriz of matrizList">
         <label class="custom-control fill-checkbox">
-          <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input" (click)="setMatriz('C1')">
+          <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input" (click)="setMatriz(matriz)">
           <span class="fill-control-indicator"></span>
-          <span class="fill-control-description"> C1</span>
+          <span class="fill-control-description"> {{matriz.matriz}}</span>
         </label>
-      </div>
-      <div class="form-check">
-          <label class="custom-control fill-checkbox">
-              <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input" (click)="setMatriz('C2')">
-              <span class="fill-control-indicator"></span>
-              <span class="fill-control-description"> C2</span>
-            </label>
-      </div>
-      <div class="form-check">
-          <label class="custom-control fill-checkbox">
-              <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input" (click)="setMatriz('C3')">
-              <span class="fill-control-indicator"></span>
-              <span class="fill-control-description"> C3</span>
-            </label>
-      </div>
-      <div class="form-check">
-          <label class="custom-control fill-checkbox">
-              <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input" (click)="setMatriz('C4')">
-              <span class="fill-control-indicator"></span>
-              <span class="fill-control-description"> C4</span>
-            </label>
-      </div>
-      <div class="form-check">
-          <label class="custom-control fill-checkbox">
-              <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input" (click)="setMatriz('C5')">
-              <span class="fill-control-indicator"></span>
-              <span class="fill-control-description"> C5</span>
-            </label>
-      </div>
-      <div class="form-check">
-          <label class="custom-control fill-checkbox">
-              <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input" (click)="setMatriz('C6')">
-              <span class="fill-control-indicator"></span>
-              <span class="fill-control-description"> C6</span>
-            </label>
-      </div>
-      <div class="form-check">
-          <label class="custom-control fill-checkbox">
-              <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input" (click)="setMatriz('C7')">
-              <span class="fill-control-indicator"></span>
-              <span class="fill-control-description"> C7</span>
-            </label>
-      </div>
-      <div class="form-check">
-          <label class="custom-control fill-checkbox">
-              <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input" (click)="setMatriz('C8')">
-              <span class="fill-control-indicator"></span>
-              <span class="fill-control-description"> C8</span>
-            </label>
-      </div>
-      <div class="form-check">
-          <label class="custom-control fill-checkbox">
-              <input class="custom-control fill-checkbox" type="checkbox" class="fill-control-input" (click)="setMatriz('C9')">
-              <span class="fill-control-indicator"></span>
-              <span class="fill-control-description"> C9</span>
-            </label>
       </div>
     </div>
   </div>

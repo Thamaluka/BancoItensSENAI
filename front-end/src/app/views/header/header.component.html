@@ -1,4 +1,4 @@
-<div [ngClass]="{'router-header': !isLogin  }">
+<div [ngClass]="{'router-header': !user }">
   <div class="shadow-sm p-3 mb bg-white ">
     <div class="container">
       <div class="row">
@@ -14,28 +14,27 @@
         </div>
 
         <div class="col justify-items-flex-end">
-          <div *ngIf="isLogin">
-            <div class="user">
-              <a class="user-name">
-                {{user.nome}}
-                <i class="fas fa-sign-out-alt" id=user-name></i>
-              </a>
-            </div>
+
+          <div class="user">
+            <a class="user-name" *ngIf="!user">
+              {{user.nome}}
+              <i class="fas fa-sign-out-alt" id=user-name></i>
+            </a>
           </div>
+
         </div>
 
       </div>
     </div>
   </div>
-  <div *ngIf="!isLogin">
-    <div class="container">
-      <div class="router-txt">
-        <a  routerLink="/home">
-          {{routerName}}
-        </a>
 
-      </div>
+  <div class="container">
+    <div class="router-txt">
+      <a routerLink="/home">
+        {{routerName}}
+      </a>
     </div>
+
 
   </div>
 </div>

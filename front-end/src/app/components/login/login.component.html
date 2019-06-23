@@ -6,6 +6,7 @@
           <div class="container">
             <div *ngIf="term === false">
               <ngb-tabset>
+
                 <ngb-tab>
                   <ng-template ngbTabTitle>
                     <div (click)="activity = true" [ngClass]="{'tab-active': activity , 'tab-inative': !activity }">
@@ -23,17 +24,17 @@
 
                           <div class="form-group">
                             <label for="inputEmail">Email</label>
-                            <input type="email" class="form-control form-control" id="inputEmail" #emailUser name="emailLogin" [(ngModel)]="email"
-                              aria-describedby="emailHelp" placeholder="Email"
+                            <input type="email" class="form-control form-control" id="inputEmail" #emailUser
+                              name="emailLogin" [(ngModel)]="email" aria-describedby="emailHelp" placeholder="Email"
                               (change)="validateEmail(emailUser.value)">
                             <div *ngIf="!emailLogin" class="formError">E-mail inválido</div>
                           </div>
 
                           <div class="form-group">
                             <label for="inputPassword">Senha</label>
-                            <input type="password" class="form-control form-control" id="inputPassword" name="senhaLogin" [(ngModel)]="passworld"
-                              placeholder="Senha">
-
+                            <input type="password" class="form-control form-control" id="inputPassword"
+                              name="senhaLogin" [(ngModel)]="passworld" placeholder="Senha">
+                              <div *ngIf="!passLogin" class="formError">Senha inválida</div>
                           </div>
 
                           <div class="pass-forgot">
@@ -45,10 +46,14 @@
                             Senha ou E-mail inválido
                           </div>
 
-                          <button type="submit" class="btn btn-primary btn-sm btn-block submit-button"
-                            (click)="login()" >ACESSAR</button>
+                          <button type="submit" class="btn btn-primary btn-sm btn-block submit-button" aria-disabled="true"
+                            (click)="login()">ACESSAR</button>
+
                         </form>
 
+                        <div class="alert alert-danger " style="text-align:center" role="alert" *ngIf="loginValidation">
+                         {{loginValidation}}
+                        </div>
                       </div>
                     </div>
                   </ng-template>
@@ -77,7 +82,6 @@
                             <label for="inputCpf">CPF</label>
                             <input type="text" class="form-control form-control" id="inputCpf" placeholder="CPF"
                               [(ngModel)]="user.cpf" name="cpf" (change)="validarCpf(cpf.value)" #cpf>
-                            <div class="formInfo">Apenas números</div>
                             <div *ngIf="!cpfValid" class="formError">CPF inválido</div>
                           </div>
 
@@ -124,7 +128,7 @@
                               (change)="validatePassworld(senha.value)" #senha [(ngModel)]="user.senha" name="senha"
                               placeholder="Senha">
                             <div class="formInfo">A senha deve conter no mínimo 8(oito) caracteres <br />e no máximo
-                              10(dez) e ao menos 1(um) número e 1(uma) letra maíuscula   </div>
+                              10(dez) e ao menos 1(um) número e 1(uma) letra maíuscula </div>
                             <div *ngIf="!senhaValid" class="formError">Senha inválida </div>
                           </div>
 

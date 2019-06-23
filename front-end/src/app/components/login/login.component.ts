@@ -4,7 +4,8 @@ import { ValidationService } from 'src/app/services/ValidationService';
 import { CursosService } from 'src/app/services/CursosService';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/UserService';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { merge } from 'rxjs/operators';
 
 @Component({
   selector: 'login',
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
   email: string
   passworld: string
   emailLogin: boolean = true;
+  passLogin: boolean = true;
 
 
   /* Validação Registro*/
@@ -38,11 +40,13 @@ export class LoginComponent implements OnInit {
   cursoValid: boolean = true;
   ucValid: boolean = true;
   obrigatorios: boolean = true;
+  loginValidation: string = ""
 
   constructor(
     private cursoService: CursosService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) { }
 
 
@@ -174,19 +178,31 @@ export class LoginComponent implements OnInit {
 
 
   login() {
-    if (this.email && this.passworld){
-     
+    this.loginValidation = "";
+    this.emailLogin = true;
+    this.passLogin = true;
+    if (this.email && this.passworld) {
+
       let user = {
-        email:this.email,
-        senha:this.passworld
+        email: this.email,
+        senha: this.passworld
       }
-      this.router.navigateByUrl('/home')
-      this.userService.login(user).subscribe((data) => {
-        if(data)
+
+      this.userService.login(user).subscribe(
+        (data) => {
+          localStorage.setItem('userName', data.nome)
+          localStorage.setItem('userId', data.id)
           this.router.navigateByUrl('/home')
-      })
+        },
+        (err) => {
+          this.loginValidation = err.error
+        }
+      )
+    } else {
+      this.emailLogin = false;
+      this.passLogin = false;
     }
-   
+
 
   }
 
