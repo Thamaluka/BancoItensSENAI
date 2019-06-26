@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ItemService {
-  endpoint = 'http://localhost:3000/item/';
+  endpoint = 'http://localhost:3000/item';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -23,14 +23,20 @@ export class ItemService {
   }
 
 
+  newItem(body): Observable<any> {
+    return this.http.post(this.endpoint, JSON.stringify(body), this.httpOptions).pipe(
+      map(this.extractData)
+    );
+  }
+
   getNiveis(): Observable<any> {
-    return this.http.get(this.endpoint + "dificuldade", this.httpOptions).pipe(
+    return this.http.get(this.endpoint + "/dificuldade", this.httpOptions).pipe(
       map(this.extractData));
   }
 
   getCabecalho(): Observable<any> {
-    return this.http.get(this.endpoint + "cabecalho", this.httpOptions).pipe(
+    return this.http.get(this.endpoint + "/cabecalho", this.httpOptions).pipe(
       map(this.extractData));
   }
-  
+
 }

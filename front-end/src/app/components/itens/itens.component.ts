@@ -38,7 +38,6 @@ export class ItensComponent implements OnInit {
     this.curso = !!this.state.header.curso.nome ? this.state.header.curso.nome : null
     this.unidadeCurricular = !!this.state.header.materia.nome ? this.state.header.materia.nome : null
     this.matriz = !!this.state.header.matriz ? this.state.header.matriz.matriz : ""
-
     this.itemService.getNiveis().subscribe((data) => {
       if (data) {
         data.forEach(element => {
@@ -64,9 +63,17 @@ export class ItensComponent implements OnInit {
     const file = <File>fileInput.target.files[0];
     this.cabecalho[index].type = "image";
     this.cabecalho[index].conteudo = file;
+
     const reader = new FileReader();
     reader.onload = e => this.cabecalho[index].conteudo = reader.result;
     reader.readAsDataURL(file);
+
+  }
+
+  _handleReaderLoaded(readerEvt) {
+    var binaryString = readerEvt.target.result;
+    var base64textString = btoa(binaryString);
+    console.log(btoa(binaryString));
   }
 
   setCabecalho = (text: string, index: number) => {
@@ -98,18 +105,18 @@ export class ItensComponent implements OnInit {
 
   setRespostasObject = () => {
     this.respostas = [
-      {  alternativa: 'A', type: this.typeRespostas, conteudo: null, gabarito: false },
-      {  alternativa: 'B', type: this.typeRespostas, conteudo: null, gabarito: false },
-      {  alternativa: 'C', type: this.typeRespostas, conteudo: null, gabarito: false },
-      {  alternativa: 'D', type: this.typeRespostas, conteudo: null, gabarito: false },
-      {  alternativa: 'E', type: this.typeRespostas, conteudo: null, gabarito: false }
+      { alternativa: 'A', type: this.typeRespostas, conteudo: null, gabarito: false },
+      { alternativa: 'B', type: this.typeRespostas, conteudo: null, gabarito: false },
+      { alternativa: 'C', type: this.typeRespostas, conteudo: null, gabarito: false },
+      { alternativa: 'D', type: this.typeRespostas, conteudo: null, gabarito: false },
+      { alternativa: 'E', type: this.typeRespostas, conteudo: null, gabarito: false }
     ]
   }
 
   setGabarito = (alternativa) => {
     alternativa.gabarito = true;
     this.respostas.forEach((element) => {
-      if (element.id !== alternativa.id) {
+      if (element.alternativa !== alternativa.alternativa) {
         element.gabarito = false;
       }
     });
@@ -122,7 +129,30 @@ export class ItensComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
-  salvarItem = () => {
+  salvarItem() {
+    let nivel = this.item.dificuldade.filter((item) => item.status === true)
+    let cabecalho = this.item.cabecalho.filter((item) => item.conteudo !== null)
+
+    const body = {
+      id_docente: parseInt(localStorage.getItem("userId")),
+      id_curso: this.item.curso,
+      id_nivel: nivel[0].id,
+      id_uc: this.item.uc,
+      id_matriz: this.item.matriz,
+      cabecalho: cabecalho,
+      alternativas: this.item.alternativas
+    }
+    this.itemService.newItem(body).subscribe(
+      (data) => {
+        console.log(data, "Item Criado com sucesso!")
+      },
+      (err) => {
+        console.log(err, "Não foi possível !")
+      }
+    )
+  }
+
+  validateItem = () => {
     this.validarCabecalho();
     this.validarRespostas();
     this.validarNivel();
@@ -131,11 +161,11 @@ export class ItensComponent implements OnInit {
         cabecalho: this.cabecalho,
         alternativas: this.respostas,
         dificuldade: this.dificuldade,
-        matriz: this.state.header.matriz ,
-        curso: this.state.header.curso.name,
-        uc: this.state.header.materia.name
+        matriz: !!this.state.header.matriz.id ? this.state.header.matriz.id : null,
+        curso: this.state.header.curso.id,
+        uc: this.state.header.materia.id
       }
-      console.log(this.item)
+      this.salvarItem()
     }
   }
 
@@ -194,6 +224,8 @@ export class ItensComponent implements OnInit {
       return false;
     }
   }
+
+
 
 
 }
