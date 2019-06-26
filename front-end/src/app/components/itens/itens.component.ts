@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ItemService } from 'src/app/services/ItemService';
 
 @Component({
   selector: 'app-itens',
@@ -8,21 +9,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ItensComponent implements OnInit {
 
-  constructor(private activatedRoute: ActivatedRoute) { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private itemService: ItemService
+
+  ) { }
   editorContent: any;
   fileData: File = null;
-  dificuldade = [
-    { id: 1, nivel: 'Muito Fácil', status: false },
-    { id: 2, nivel: 'Fácil', status: false },
-    { id: 3, nivel: 'Médio', status: false },
-    { id: 4, nivel: 'Difícil', status: false },
-    { id: 5, nivel: 'Muito Difícil', status: false }
-  ]
-  cabecalho = [
-    { id: 1, name: 'Enunciado', conteudo: null, type: null },
-    { id: 2, name: 'Suporte', conteudo: null, type: null },
-    { id: 3, name: 'Comando', conteudo: null, type: null }
-  ]
+
+  dificuldade = []
+  cabecalho = []
   typeRespostas: any = null
   respostas: any = null
   item: any
@@ -40,8 +36,28 @@ export class ItensComponent implements OnInit {
     this.state = this.activatedRoute.paramMap
       .pipe((() => window.history.state))
     this.curso = !!this.state.header.curso.nome ? this.state.header.curso.nome : null
-    this.unidadeCurricular =!!this.state.header.materia.nome ? this.state.header.materia.nome : null
-    this.matriz = !!this.state.header.matriz ? this.state.header.matriz.matriz : "" 
+    this.unidadeCurricular = !!this.state.header.materia.nome ? this.state.header.materia.nome : null
+    this.matriz = !!this.state.header.matriz ? this.state.header.matriz.matriz : ""
+
+    this.itemService.getNiveis().subscribe((data) => {
+      if (data) {
+        data.forEach(element => {
+          element.status = false
+          this.dificuldade.push(element)
+        });
+      }
+    })
+
+    this.itemService.getCabecalho().subscribe((data) => {
+      if (data) {
+        data.forEach(element => {
+          element.conteudo = null
+          element.type = null
+          this.cabecalho.push(element)
+        });
+      }
+    })
+
   }
 
   imgProgress(fileInput: any, index: number) {
@@ -82,11 +98,11 @@ export class ItensComponent implements OnInit {
 
   setRespostasObject = () => {
     this.respostas = [
-      { id: 1, alternativa: 'A', type: this.typeRespostas, conteudo: null, gabarito: false },
-      { id: 2, alternativa: 'B', type: this.typeRespostas, conteudo: null, gabarito: false },
-      { id: 3, alternativa: 'C', type: this.typeRespostas, conteudo: null, gabarito: false },
-      { id: 4, alternativa: 'D', type: this.typeRespostas, conteudo: null, gabarito: false },
-      { id: 5, alternativa: 'E', type: this.typeRespostas, conteudo: null, gabarito: false }
+      {  alternativa: 'A', type: this.typeRespostas, conteudo: null, gabarito: false },
+      {  alternativa: 'B', type: this.typeRespostas, conteudo: null, gabarito: false },
+      {  alternativa: 'C', type: this.typeRespostas, conteudo: null, gabarito: false },
+      {  alternativa: 'D', type: this.typeRespostas, conteudo: null, gabarito: false },
+      {  alternativa: 'E', type: this.typeRespostas, conteudo: null, gabarito: false }
     ]
   }
 
@@ -115,10 +131,11 @@ export class ItensComponent implements OnInit {
         cabecalho: this.cabecalho,
         alternativas: this.respostas,
         dificuldade: this.dificuldade,
-        matriz: this.state.header.matriz.name,
+        matriz: this.state.header.matriz ,
         curso: this.state.header.curso.name,
         uc: this.state.header.materia.name
       }
+      console.log(this.item)
     }
   }
 

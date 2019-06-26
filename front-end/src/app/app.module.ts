@@ -22,6 +22,7 @@ import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { ValidationService } from './services/ValidationService';
 import { ItemViewComponent } from './views/item-view/item-view.component';
 import { HttpClientModule } from '@angular/common/http';
+import { StorageService } from './services/StorageService';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { HttpClientModule } from '@angular/common/http';
     FroalaEditorModule.forRoot(), 
     FroalaViewModule.forRoot()
   ],
-  providers: [ValidationService],
+  providers: [ValidationService , StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

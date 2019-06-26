@@ -5,7 +5,7 @@ import { CursosService } from 'src/app/services/CursosService';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/UserService';
 import { Router, ActivatedRoute } from '@angular/router';
-import { merge } from 'rxjs/operators';
+import { StorageService } from 'src/app/services/StorageService';
 
 @Component({
   selector: 'login',
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
     private cursoService: CursosService,
     private userService: UserService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private localStorage: StorageService
   ) { }
 
 
@@ -188,10 +188,11 @@ export class LoginComponent implements OnInit {
         senha: this.passworld
       }
 
+
       this.userService.login(user).subscribe(
         (data) => {
-          localStorage.setItem('userName', data.nome)
-          localStorage.setItem('userId', data.id)
+          this.localStorage.setItem('userName', data.nome)
+          this.localStorage.setItem('userId', data.id)
           this.router.navigateByUrl('/home')
         },
         (err) => {

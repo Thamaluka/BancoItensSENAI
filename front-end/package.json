@@ -29,6 +29,7 @@
     "ng-multiselect-dropdown": "^0.2.3",
     "ng2-ckeditor": "^1.2.3",
     "ngx-bootstrap": "^4.0.1",
+    "ngx-store": "^2.1.0",
     "rxjs": "~6.3.3",
     "textangular": "^1.5.16",
     "tslib": "^1.9.0",

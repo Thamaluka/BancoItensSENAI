@@ -1,4 +1,4 @@
-<div [ngClass]="{'router-header': !user }">
+<div [ngClass]="{'router-header': user !== null }">
   <div class="shadow-sm p-3 mb bg-white ">
     <div class="container">
       <div class="row">
@@ -16,9 +16,10 @@
         <div class="col justify-items-flex-end">
 
           <div class="user">
-            <a class="user-name" *ngIf="!user">
+            <a class="user-name" *ngIf="user !== null">
               {{user.nome}}
-              <i class="fas fa-sign-out-alt" id=user-name></i>
+              <ng-template #tipContent>Sair</ng-template>
+              <a style="color:inherit" routerLink="/" (click)="logginOff()" [ngbTooltip]="tipContent"><i class="fas fa-sign-out-alt" id=user-name></i></a>
             </a>
           </div>
 

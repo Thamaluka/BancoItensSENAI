@@ -7,10 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Senai';
-  
+
   ngOnInit(): void {
-   /*  localStorage.setItem('userName', null)
-    localStorage.setItem('userId', null)
-     */
+    //localStorage.clear()
+
   }
 }
