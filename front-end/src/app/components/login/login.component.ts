@@ -171,6 +171,15 @@ export class LoginComponent implements OnInit {
   createNewUser() {
     this.user.cursos = this.cursosSelected;
     this.user.uc = this.ucsSelected;
+
+    var str = this.user.cpf;
+    var cpf = str;
+    for (let index = 0; index < str.length; index++) {
+      cpf = cpf.replace(".", "");
+      cpf = cpf.replace("-", "");
+      cpf = cpf.replace(",", "");
+    }
+    this.user.cpf = cpf;
     this.userService.newUser(this.user).subscribe((data) => {
       location.reload();
     })

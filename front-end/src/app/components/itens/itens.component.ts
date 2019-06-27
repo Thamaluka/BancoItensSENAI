@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ItemService } from 'src/app/services/ItemService';
 
 @Component({
@@ -11,7 +11,8 @@ export class ItensComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private itemService: ItemService
+    private itemService: ItemService,
+    private router: Router
 
   ) { }
   editorContent: any;
@@ -56,7 +57,6 @@ export class ItensComponent implements OnInit {
         });
       }
     })
-
   }
 
   imgProgress(fileInput: any, index: number) {
@@ -68,12 +68,6 @@ export class ItensComponent implements OnInit {
     reader.onload = e => this.cabecalho[index].conteudo = reader.result;
     reader.readAsDataURL(file);
 
-  }
-
-  _handleReaderLoaded(readerEvt) {
-    var binaryString = readerEvt.target.result;
-    var base64textString = btoa(binaryString);
-    console.log(btoa(binaryString));
   }
 
   setCabecalho = (text: string, index: number) => {
@@ -142,15 +136,16 @@ export class ItensComponent implements OnInit {
       cabecalho: cabecalho,
       alternativas: this.item.alternativas
     }
-    /*   let formData = 
+   
       this.itemService.newItem(body).subscribe(
         (data) => {
-          console.log(data, "Item Criado com sucesso!")
+          console.log(data, "Item Criado com sucesso!");
+          this.router.navigateByUrl('/home')
         },
         (err) => {
           console.log(err, "Não foi possível !")
         }
-      ) */
+      )
   }
 
   validateItem = () => {

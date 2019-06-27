@@ -35,6 +35,7 @@ export class ValidationService {
             cpf = cpf.replace("-", "");
             cpf = cpf.replace(",", "");
         }
+        console.log(cpf)
 
         if (!cpf || cpf.length != 11
             || cpf == "00000000000"

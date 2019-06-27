@@ -48,11 +48,13 @@ export class CreateItemComponent implements OnInit {
       this.list = [];
       this.cursoService.getUcByUser(this.userId).subscribe((data) => {
         data.forEach(element => {
+          console.log(data)
           this.list.push(element)
+          this.title = "Seleciona a Matéria"
+          this.describe = "Selecione a matéria em que o item pertencerá"
         });
       })
-      this.title = "Seleciona a Matéria"
-      this.describe = "Selecione a matéria em que o item pertencerá"
+
     } else {
       this.materia = item
       this.list = null

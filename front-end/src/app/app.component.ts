@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'Senai';
 
   ngOnInit(): void {
-    //localStorage.clear()
+    localStorage.clear()
 
   }
 }
