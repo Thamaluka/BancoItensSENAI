@@ -142,14 +142,15 @@ export class ItensComponent implements OnInit {
       cabecalho: cabecalho,
       alternativas: this.item.alternativas
     }
-    this.itemService.newItem(body).subscribe(
-      (data) => {
-        console.log(data, "Item Criado com sucesso!")
-      },
-      (err) => {
-        console.log(err, "Não foi possível !")
-      }
-    )
+    /*   let formData = 
+      this.itemService.newItem(body).subscribe(
+        (data) => {
+          console.log(data, "Item Criado com sucesso!")
+        },
+        (err) => {
+          console.log(err, "Não foi possível !")
+        }
+      ) */
   }
 
   validateItem = () => {

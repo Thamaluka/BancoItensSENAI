@@ -1,3 +1,47 @@
-<p>
-  item-view works!
-</p>
+<div class="content">
+  <div class="header">
+    <div>Curso</div>
+    <div>Unidade Curricular</div>
+    <div>Matriz</div>
+    <div>Muito Dificil</div>
+  </div>
+  <div>
+    <div class="textCab">
+      <div style="margin-left: 20px;" [innerHTML]="comment"></div>
+    </div>
+    <div class="imgCab">
+      <img width="200" height="200" [src]="imagemTest">
+    </div>
+    <div class="textCab">
+      <div style="margin-left: 20px;" [innerHTML]="comment"></div>
+    </div>
+  </div>
+
+
+  <!--   <div class="row margin25">
+
+    <div class="col-md-4">
+      <div class="input-group-prepend">
+        <span class="input-group-text upload" (click)="showImage()" id="btnUpload">Show</span>
+      </div>
+
+    </div>
+    <div class="col-md-4">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text upload" (click)="upload()" id="btnUpload">Upload</span>
+        </div>
+        <div class="custom-file">
+          <form action="/api/upload" method="post" enctype="multipart/form-data">
+            <input (change)="fileChange($event)" type="file" class="custom-file-input" id="inputGroupFile01"
+              aria-describedby="inputGroupFileAddon01">
+          </form>
+          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <img width="600" height="400" [src]="imagemTest">
+    </div>
+  </div> -->
+</div>

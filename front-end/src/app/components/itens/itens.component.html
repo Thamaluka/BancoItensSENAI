@@ -10,7 +10,7 @@
         {{curso}}
       </div>
       <div class="subtitles">
-       {{unidadeCurricular}}
+        {{unidadeCurricular}}
       </div>
       <div class="subtitles">
         {{matriz}}
@@ -36,7 +36,7 @@
                 <div *ngIf="item.type !== null"><a (click)="removeType(i)"><i class="fas fa-times"
                       style="margin-right: 10px;"></i></a></div>
               </div>
-              <!-- Seleção do tipo -->
+              <!-- Seleção do tipo  -->
               <ng-container *ngIf="item.type === null; else elseTemplate">
                 <div class="options">
                   <div class="squareCabecalho">
@@ -53,7 +53,7 @@
                 </div>
               </ng-container>
               <ng-template #elseTemplate>
-                <!-- Mostrar por tipo -->
+              <!--Mostrar por tipo  -->
                 <ng-container *ngIf="item.type === 'text'; else elseTemp">
 
                   <div id="froala-editor" [froalaEditor] [(froalaModel)]="item.conteudo">Digite seu texto aqui</div>
@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-    <!-- GABARITO -->
+   <!--  GABARITO-->  
     <div class="shadow-sm p-3 mb-5 bg-white">
       <div class="container">
         <div class="row subtitles">Resposta e Gabarito</div>
@@ -155,7 +155,7 @@
       </div>
     </div>
 
-    <!-- dificuldade -->
+   <!--  <!dificuldade-- --> 
     <div class="shadow-sm p-3 mb-5 bg-white">
       <div class="container">
         <div class="row subtitles">Nível de dificuldade</div>
@@ -179,12 +179,11 @@
       <button type="submit" class="btn btn-primary btn-sm" (click)="validateItem()">SALVAR ITEM</button>
     </div>
 
-
-  </ng-container>
-<!--   <ng-template #temp>
+  </ng-container> 
+  <ng-template #temp>
     <item-view [item]="item"></item-view>
   </ng-template>
- -->
+
 
 
 
