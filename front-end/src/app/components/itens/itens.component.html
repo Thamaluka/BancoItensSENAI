@@ -53,14 +53,14 @@
                 </div>
               </ng-container>
               <ng-template #elseTemplate>
-              <!--Mostrar por tipo  -->
+                <!--Mostrar por tipo  -->
                 <ng-container *ngIf="item.type === 'text'; else elseTemp">
 
                   <div id="froala-editor" [froalaEditor] [(froalaModel)]="item.conteudo">Digite seu texto aqui</div>
                 </ng-container>
                 <ng-template #elseTemp>
                   <div class="imageDiv">
-                    <img width="600" height="400" [src]="item.conteudo">
+                    <img width="300" height="200" [src]="item.conteudo">
                   </div>
                 </ng-template>
               </ng-template>
@@ -69,7 +69,7 @@
         </div>
       </div>
     </div>
-   <!--  GABARITO-->  
+    <!--  GABARITO-->
     <div class="shadow-sm p-3 mb-5 bg-white">
       <div class="container">
         <div class="row subtitles">Resposta e Gabarito</div>
@@ -155,7 +155,7 @@
       </div>
     </div>
 
-   <!--  <!dificuldade-- --> 
+    <!--  <!dificuldade-- -->
     <div class="shadow-sm p-3 mb-5 bg-white">
       <div class="container">
         <div class="row subtitles">Nível de dificuldade</div>
@@ -175,16 +175,19 @@
       </div>
     </div>
 
-    <div class="save">
-      <button type="submit" class="btn btn-primary btn-sm" (click)="validateItem()">SALVAR ITEM</button>
-    </div>
 
-  </ng-container> 
-<!--   <ng-template #temp>
+
+  </ng-container>
+  <ng-template #temp>
     <item-view [item]="item"></item-view>
-  </ng-template>
- -->
 
+  </ng-template>
+
+  <div class="save">
+    <button type="submit" class="btn btn-primary btn-sm" (click)="validateItem()">SALVAR ITEM</button>
+    <button type="submit" class="btn btn-primary btn-sm" *ngIf="item!==undefined" (click)="setItem()">VOLTAR ITEM</button>
+
+  </div>
 
 
 </div>

@@ -1,40 +1,44 @@
 .header {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-around;
-    font-family: 'roboto';
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  font-family: "roboto";
+  margin-bottom: 20px;
 }
 
-.nivel{
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    justify-content: flex-end;
+.nivel {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: flex-end;
 }
 
 .textCab {
-    display: flex;
-    width: 100%;
-    margin: 10px;
+  display: flex;
+  width: 100%;
+  margin: 10px;
 }
 
-.imgCab{
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin: 20px;
+.imgCab {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 20px;
 }
 
 .content {
-    margin: 100px;
+  margin: 100px;
 }
 
 .margin25 {
-    margin: 25px;
+  margin: 25px;
 }
 
 .upload {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.checked {
+  color: #299885;
 }

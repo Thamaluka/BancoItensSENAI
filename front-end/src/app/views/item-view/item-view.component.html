@@ -1,24 +1,32 @@
-<div class="content">
+<div class="content shadow-sm p-3 mb-5">
   <div class="header">
-    <div>Curso</div>
-    <div>Unidade Curricular</div>
-    <div>Matriz</div>
-    <div>Muito Dificil</div>
+    <div><b>{{header.curso}}</b></div>
+    <div><b>{{header.uc}}</b></div>
+    <div><b>{{header.matriz}}</b></div>
+    <div><b>{{header.nivel}}</b></div>
   </div>
-  <div>
-    <div class="textCab">
-      <div style="margin-left: 20px;" [innerHTML]="comment"></div>
+
+  <div *ngFor="let item of item.cabecalho">
+    <div class="textCab" *ngIf="item.type == 'text'">
+      <div style="margin-left: 20px;" [innerHTML]="item.conteudo"></div>
     </div>
-    <div class="imgCab">
-      <img width="200" height="200" [src]="imagemTest">
-    </div>
-    <div class="textCab">
-      <div style="margin-left: 20px;" [innerHTML]="comment"></div>
+    <div class="imgCab" *ngIf="item.type == 'image'">
+      <img width="200" height="200" [src]="item.conteudo">
     </div>
   </div>
 
+  <div class="row w-100" *ngFor="let item of item.alternativas">
+    <b style="margin-left: 20px;" [ngClass]="{'checked': item.gabarito}">{{item.alternativa}}</b><!--  <i [ngClass]="{'fas fa-envelope': item.idType === 1}" id=icon-contact></i> -->
+    <div class="form-check">
+      <div style="margin-left: 20px;" [innerHTML]="item.conteudo"></div>
+      <span class="fill-control-indicator"></span>
+    </div>
+  </div>
 
-  <!--   <div class="row margin25">
+  <!--   <div class="save">
+    <button type="submit" class="btn btn-primary btn-sm">SALVAR ITEM</button>
+  </div> -->
+  <!--     <div class="row margin25">
 
     <div class="col-md-4">
       <div class="input-group-prepend">

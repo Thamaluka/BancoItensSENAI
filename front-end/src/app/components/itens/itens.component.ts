@@ -59,16 +59,7 @@ export class ItensComponent implements OnInit {
     })
   }
 
-  imgProgress(fileInput: any, index: number) {
-    const file = <File>fileInput.target.files[0];
-    this.cabecalho[index].type = "image";
-    this.cabecalho[index].conteudo = file;
 
-    const reader = new FileReader();
-    reader.onload = e => this.cabecalho[index].conteudo = reader.result;
-    reader.readAsDataURL(file);
-
-  }
 
   setCabecalho = (text: string, index: number) => {
     this.cabecalho[index].conteudo = text;
@@ -116,6 +107,14 @@ export class ItensComponent implements OnInit {
     });
   }
 
+  imgProgress(fileInput: any, index: number) {
+    const file = <File>fileInput.target.files[0];
+    this.cabecalho[index].type = "image";
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = e => this.cabecalho[index].conteudo = reader.result;
+  }
+
   addImgResposta = (fileInput: any, index: number) => {
     const file = <File>fileInput.target.files[0];
     const reader = new FileReader();
@@ -123,7 +122,13 @@ export class ItensComponent implements OnInit {
     reader.readAsDataURL(file);
   }
 
+  setItem() {
+    this.item = undefined;
+  }
+
+
   salvarItem() {
+
     let nivel = this.item.dificuldade.filter((item) => item.status === true)
     let cabecalho = this.item.cabecalho.filter((item) => item.conteudo !== null)
 
@@ -136,33 +141,39 @@ export class ItensComponent implements OnInit {
       cabecalho: cabecalho,
       alternativas: this.item.alternativas
     }
-   
-      this.itemService.newItem(body).subscribe(
+    //  this.router.navigateByUrl('/home')
+    //TODO upload image
+    /*   this.itemService.newItem(body).subscribe(
         (data) => {
           console.log(data, "Item Criado com sucesso!");
-          this.router.navigateByUrl('/home')
+       
         },
         (err) => {
           console.log(err, "Não foi possível !")
         }
-      )
+      ) */
   }
 
   validateItem = () => {
-    this.validarCabecalho();
-    this.validarRespostas();
-    this.validarNivel();
-    if (!this.cabecalhoInvalid && !this.nivelInvalid && !this.alternativaInvalid) {
-      this.item = {
-        cabecalho: this.cabecalho,
-        alternativas: this.respostas,
-        dificuldade: this.dificuldade,
-        matriz: !!this.state.header.matriz.id ? this.state.header.matriz.id : null,
-        curso: this.state.header.curso.id,
-        uc: this.state.header.materia.id
+    if (this.item !== undefined) {
+      this.router.navigateByUrl('/home')
+    } else {
+      this.validarCabecalho();
+      this.validarRespostas();
+      this.validarNivel();
+      if (!this.cabecalhoInvalid && !this.nivelInvalid && !this.alternativaInvalid) {
+        this.item = {
+          cabecalho: this.cabecalho,
+          alternativas: this.respostas,
+          dificuldade: this.dificuldade,
+          matriz: !!this.state.header.matriz.id ? this.state.header.matriz.id : null,
+          curso: this.state.header.curso.id,
+          uc: this.state.header.materia.id
+        }
+        this.salvarItem()
       }
-      this.salvarItem()
     }
+
   }
 
   validarCabecalho = () => {

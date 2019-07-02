@@ -24,6 +24,7 @@ export class ItemService {
 
 
   newItem(body): Observable<any> {
+    console.log( body )
     return this.http.post(this.endpoint, JSON.stringify(body), this.httpOptions).pipe(
       map(this.extractData)
     );
