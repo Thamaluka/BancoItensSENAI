@@ -1,6 +1,35 @@
-<header></header>
-
-<router-outlet></router-outlet>
-
-
-<footer-nav class="mt-auto"></footer-nav>
+<div class="container">
+    <div class="d-flex justify-content-between">
+      <div class="title">
+        <h3>Pesquisar Itens</h3>
+      </div>
+    </div>
+    <div class="justify-content-between">
+      <div class="form-group">
+        <label>Curso: </label>
+        <ng-multiselect-dropdown [placeholder]="'Curso'" [data]="listaCurso" [settings]="listaCursoSettings">
+        </ng-multiselect-dropdown>
+  
+        <label>Disciplina:</label>
+        <ng-multiselect-dropdown [placeholder]="'Disciplina'" [data]="listaDisciplina"
+          [settings]="listaDisciplinaSettings">
+        </ng-multiselect-dropdown>
+  
+        <label>Capacidade Matriz:</label>
+        <ng-multiselect-dropdown [placeholder]="'Capacidade Matriz'" [data]="listaMatriz"
+          [settings]="listaMatrizSettings">
+        </ng-multiselect-dropdown>
+      </div>
+      <div class="form-group">
+        <label>Enunciado: </label>
+        <input class="form-control" type="text" value="{{enunciado}}">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Resposta: </label>
+      <input class="form-control" type="text" value="{{resposta}}">
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary">Pesquisar</button>
+    </div>
+  </div>

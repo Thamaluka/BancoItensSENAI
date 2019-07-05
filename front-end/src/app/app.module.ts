@@ -15,8 +15,8 @@ import { CreateItemComponent } from './views/create-item/create-item.component';
 import { SearchItemsComponent } from './views/search-items/search-items.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { UserTermComponent } from './components/user-term/user-term.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ItensComponent } from './components/itens/itens.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 
 @NgModule({
